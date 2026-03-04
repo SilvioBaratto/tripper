@@ -1,17 +1,13 @@
 /**
  * Vercel Serverless Function handler.
  *
- * Vercel's Node.js runtime compiles this file independently of the NestJS
- * build. It imports the serverless bootstrap module which is part of the
- * same TypeScript source tree — Vercel resolves the import via
- * tsconfig path aliases.
- *
- * File location:  api/api/index.ts
- * Vercel detects: api/ directory → treats index.ts as the function for "/"
- * The rewrite in vercel.json routes all traffic here.
+ * Imports from the compiled dist/ output (built by nest build + tsc-alias)
+ * where all TypeScript path aliases are already resolved.
+ * Vercel's @vercel/node runtime compiles this file independently,
+ * so we must not rely on tsconfig path aliases here.
  */
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { getApp } from '../src/serverless';
+import { getApp } from '../dist/src/serverless';
 
 export default async function handler(
   req: VercelRequest,
