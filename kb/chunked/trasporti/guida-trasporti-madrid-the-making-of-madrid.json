@@ -1,0 +1,221 @@
+{
+  "source_file": "trasporti/guida-trasporti-madrid-the-making-of-madrid.md",
+  "page_title": "Guida ai trasporti di Madrid",
+  "page_summary": "Guida pratica per spostarsi a Madrid: come arrivare dall’aeroporto al centro (T1–T3 e T4), come usare metro, autobus, Cercanías, taxi e treni a lunga percorrenza, con tariffe, orari chiave e consigli di comportamento. Comprende anche indicazioni rapide per raggiungere Puerta del Sol.",
+  "category": "trasporti",
+  "source_url": "https://www.themakingofmadrid.com/2025/07/07/madrid-transportation-guide/",
+  "processed_at": "2026-02-13T15:18:01.124Z",
+  "chunks": [
+    {
+      "chunk_id": "trasporti/guida-trasporti-madrid-the-making-of-madrid__0",
+      "text": "Arrivi ai Terminal 1–3 dell’aeroporto Adolfo Suárez Madrid-Barajas? Una delle opzioni più semplici è la metro. La Linea 8 (rosa) collega i terminal con Nuevos Ministerios, nodo in cui puoi cambiare con altre linee per raggiungere molte zone della città. Tieni conto però del supplemento aeroportuale di €3 per entrare o uscire dalle stazioni dell’aeroporto: di fatto, una corsa singola fino al centro arriva a quasi €5. La metro è comoda se hai una destinazione vicina a una fermata o se vuoi evitare il traffico, ma considera i tempi di trasferimento e le scale/ascensori in stazione se viaggi con bagagli pesanti. Da Nuevos Ministerios, se hai poco tempo in città, puoi anche considerare un mini‑itinerario: dai un’occhiata ai suggerimenti su cosa fare durante uno scalo per sfruttare al massimo le ore a disposizione. In sintesi, la metro dai T1–T3 è una soluzione efficace per chi alloggia lungo la Linea 8 o desidera orientarsi subito sulla rete, sapendo che il supplemento aeroportuale incide sul costo della singola tratta.",
+      "metadata": {
+        "section_title": "Dall’aeroporto T1–T3: Metro Linea 8",
+        "links": [
+          {
+            "text": "cosa fare durante uno scalo a Madrid",
+            "url": "https://www.themakingofmadrid.com/2024/08/05/what-to-do-on-a-layover-in-madrid/"
+          }
+        ],
+        "addresses": [],
+        "image_urls": [
+          "https://www.themakingofmadrid.com/wp-content/uploads/2025/05/Adolfo_Suarez_Madrid%E2%80%93Barajas_Airport_7_16819319636.jpg"
+        ],
+        "opening_hours": null,
+        "prices": "Supplemento aeroportuale metro: €3; corsa singola verso il centro ~€5"
+      }
+    },
+    {
+      "chunk_id": "trasporti/guida-trasporti-madrid-the-making-of-madrid__1",
+      "text": "Dai Terminal 1–3, l’Airport Express (Linea 203) è un collegamento diretto e attivo 24 ore su 24 tra l’aeroporto e il centro. Il tragitto dura circa 30 minuti e ferma a Cibeles e Atocha; costa €5 e parte ogni 15–20 minuti. Se arrivi di notte (tra le 23:30 e le 6:00), la N27 notturna costa anch’essa €5 ma parte/arriva a Cibeles; è utile per arrivare in centro quando le frequenze della metro calano. Puoi pagare contactless toccando la carta sul validatore a bordo: fallo una sola volta (massimo due passaggi per più passeggeri in rapida successione) per evitare doppie addebiti. Un vantaggio del bus è la rapidità nel raggiungere la fermata dal terminal, spesso più vicina e intuitiva della metro: ottimo se trascini valigie pesanti. Inoltre, è comodo per un collegamento diretto con la stazione di Atocha, da cui potrai proseguire in metro o treno. In sintesi, l’Airport Express è l’opzione più semplice e continua per chi cerca un trasferimento senza cambi, mentre la N27 copre la fascia notturna da/per Cibeles.",
+      "metadata": {
+        "section_title": "Dall’aeroporto T1–T3: Airport Express e bus notturni",
+        "links": [],
+        "addresses": [],
+        "image_urls": [],
+        "opening_hours": "Airport Express 24/7; N27 circa 23:30–06:00",
+        "prices": "Airport Express Linea 203: €5; N27: €5"
+      }
+    },
+    {
+      "chunk_id": "trasporti/guida-trasporti-madrid-the-making-of-madrid__2",
+      "text": "Se preferisci comodità porta-a-porta dai Terminal 1–3, i taxi sono disponibili 24 ore su 24 subito fuori dagli arrivi. La tariffa è fissa a €33 per qualsiasi destinazione all’interno dell’anello della M‑30, rendendoli competitivi soprattutto se viaggi in gruppo o con molti bagagli. Se il tuo hotel è fuori dalla M‑30, aspettati un costo maggiore: ad esempio, per una destinazione appena oltre l’anello si aggira intorno ai €40. Vantaggi: rapidità, nessun cambio e nessuna necessità di conoscere la rete. Svantaggi: prezzo superiore rispetto a metro o bus e, nelle ore di punta, possibili rallentamenti. Se arrivi tardissimo o sei molto stanco, è spesso la scelta più semplice. Ricorda che la tariffa fissa vale solo entro la M‑30; oltre, il tassametro applica le tariffe previste. In generale, i taxi sono un’opzione veloce e senza stress per raggiungere il centro da T1–T3.",
+      "metadata": {
+        "section_title": "Dall’aeroporto T1–T3: Taxi a tariffa fissa",
+        "links": [],
+        "addresses": [],
+        "image_urls": [
+          "https://www.themakingofmadrid.com/wp-content/uploads/2022/12/SEAT_Toledo_IV_version_Taxi_1-1024x768.jpg"
+        ],
+        "opening_hours": "24/7",
+        "prices": "Tariffa fissa verso qualsiasi destinazione entro la M‑30: €33; oltre M‑30: variabile (~€40 per tratte vicine)"
+      }
+    },
+    {
+      "chunk_id": "trasporti/guida-trasporti-madrid-the-making-of-madrid__3",
+      "text": "Se atterri al Terminal 4, la soluzione più comoda per raggiungere il centro è spesso il Cercanías (treno suburbano). La stazione si trova al piano più basso, accanto alla metro. Il biglietto costa €2,60 fino al centro e puoi pagare direttamente con carta ai varchi, evitando le macchinette. I treni collegano direttamente le principali stazioni cittadine, inclusa Atocha, e consentono cambi agevoli a Nuevos Ministerios verso le linee C3 o C4 che portano a Sol. Il servizio opera indicativamente dalle 6:00 alle 22:55, quindi è ideale salvo arrivi molto tardivi. Se acquisti un biglietto cartaceo, pagherai un sovrapprezzo di 50 centesimi; conservalo, perché potrai riutilizzare la tessera come supporto per altri viaggi, ad esempio verso Alcalá de Henares, ben servita da questa rete. In breve: dal T4 il Cercanías è rapido, economico e diretto verso i nodi principali, con pagamenti contactless che semplificano l’accesso.",
+      "metadata": {
+        "section_title": "Dal Terminal 4: Cercanías per il centro",
+        "links": [],
+        "addresses": [],
+        "image_urls": [
+          "https://www.themakingofmadrid.com/wp-content/uploads/2025/05/1024px-17-12-14-Flughafen-Madrid-Barajas-RalfR-DSCF1008.jpg"
+        ],
+        "opening_hours": "Circa 06:00–22:55",
+        "prices": "Cercanías T4→centro: €2,60; biglietto cartaceo: +€0,50 (riutilizzabile)"
+      }
+    },
+    {
+      "chunk_id": "trasporti/guida-trasporti-madrid-the-making-of-madrid__4",
+      "text": "Dal Terminal 4 puoi anche utilizzare la metro, particolarmente pratica se la tua destinazione è vicino a una stazione della Linea 8. Ricorda che per le stazioni dell’aeroporto è previsto un supplemento di €3. La metro dal T4 ha senso soprattutto fuori dall’orario del Cercanías (che termina verso le 22:55) o se alloggi lungo il tracciato della Linea 8, riducendo al minimo i cambi. Se hai molti bagagli, valuta scale e distanze all’interno delle stazioni; in alternativa, considera combinazioni con taxi per l’ultimo miglio. Per pianificare il percorso, consulta la mappa e le fermate della Linea 8, che collega l’aeroporto con Nuevos Ministerios, da cui potrai cambiare con altre linee verso diverse zone della città. Tieni presente l’impatto del supplemento sul costo totale, specie per una singola tratta.",
+      "metadata": {
+        "section_title": "Dal Terminal 4: Metro Linea 8 e quando conviene",
+        "links": [
+          {
+            "text": "Linea 8 Metro Madrid",
+            "url": "https://www.metromadrid.es/es/linea/linea-8"
+          }
+        ],
+        "addresses": [],
+        "image_urls": [],
+        "opening_hours": null,
+        "prices": "Supplemento aeroportuale metro: €3"
+      }
+    },
+    {
+      "chunk_id": "trasporti/guida-trasporti-madrid-the-making-of-madrid__5",
+      "text": "La Metro de Madrid è l’ossatura del trasporto pubblico cittadino: 13 linee più 3 diramazioni di metro leggera e una capillarità tale che raramente ti troverai a più di 10 minuti a piedi da una stazione. Le ultime corse partono intorno all’1:30, quindi pianifica i rientri notturni. I treni sono in genere moderni; fa eccezione la Linea 1, la più antica, che però regala una chicca per appassionati: la stazione fantasma di Andén 0 (Chamberí), oggi museo, con pannelli pubblicitari in ceramica d’epoca perfettamente conservati. È una tappa insolita per conoscere la storia del metro e l’estetica delle vecchie campagne commerciali madrilene. In generale, la metro è veloce e frequente; nelle ore di punta può affollarsi, ma resta il modo più rapido per attraversare la città evitando il traffico. Suggerimento: consulta la mappa prima di partire per scegliere i cambi più intuitivi e ridurre camminate sotterranee tra linee distanti.",
+      "metadata": {
+        "section_title": "Metro di Madrid: rete, frequenze e curiosità",
+        "links": [
+          {
+            "text": "Andén 0 (stazione fantasma di Chamberí)",
+            "url": "https://www.atlasobscura.com/places/chamberi-ghost-station"
+          },
+          {
+            "text": "La stagione d’oro della ceramica pubblicitaria a Madrid",
+            "url": "https://www.themakingofmadrid.com/2020/01/18/madrids-golden-age-of-commercial-ceramic-art/"
+          }
+        ],
+        "addresses": [],
+        "image_urls": [
+          "https://www.themakingofmadrid.com/wp-content/uploads/2025/05/Metro_de_Madrid_Callao_L3.jpg"
+        ],
+        "opening_hours": "Ultime corse intorno alle 01:30",
+        "prices": null
+      }
+    },
+    {
+      "chunk_id": "trasporti/guida-trasporti-madrid-the-making-of-madrid__6",
+      "text": "Per usare metro e altre reti integrate ti serve la Tarjeta Multi, una tessera ricaricabile che costa €2,50 alle macchinette (interfaccia anche in inglese). In Zona A (Madrid centrale) una corsa singola costa €1,50; il carnet da 10 viaggi è €7,30. I pass turistici con viaggi illimitati in Zona A vanno da €10 (1 giorno) a €42 (1 settimana): convengono solo se prevedi molti spostamenti giornalieri, altrimenti il 10 corse sulla Tarjeta Multi è spesso più economico. Le stazioni dell’aeroporto richiedono biglietto speciale o supplemento di €3, esclusi i pass illimitati. Se ti fermi più a lungo, puoi risparmiare con l’abbonamento mensile (bono) a €32,70: si richiede online e si ritira poi in ufficio. Valuta il tuo programma giornaliero prima di scegliere tra biglietti singoli, 10 corse o pass illimitati, includendo nel calcolo eventuali trasferimenti da/per l’aeroporto.",
+      "metadata": {
+        "section_title": "Tariffe e tessere: Tarjeta Multi, carnet e pass",
+        "links": [
+          {
+            "text": "Richiedere l’abbonamento trasporti (bono) online",
+            "url": "https://crtm.es/billetes-y-tarifas/billetes-y-abonos/abono-transporte/"
+          }
+        ],
+        "addresses": [],
+        "image_urls": [],
+        "opening_hours": null,
+        "prices": "Tarjeta Multi: €2,50; corsa singola Zona A: €1,50; 10 corse: €7,30; pass turistici Zona A: €10 (1 g)–€42 (7 g); supplemento aeroporto: €3; bono mensile: €32,70"
+      }
+    },
+    {
+      "chunk_id": "trasporti/guida-trasporti-madrid-the-making-of-madrid__7",
+      "text": "Gli autobus di Madrid si dividono in blu (linee urbane) e verdi (interurbane verso l’area metropolitana). La corsa singola costa €1,50 e puoi pagare direttamente con carta di debito/credito a bordo. Esistono carnet da 10 corse, e sia i pass turistici sia l’abbonamento mensile includono l’uso illimitato degli autobus blu. Le fermate riportano schemi delle linee e spesso display elettronici con tempi di attesa in tempo reale. Se preferisci muoverti in superficie e ammirare la città, alcune linee sono particolarmente panoramiche: la 5 e la 27 attraversano assi centrali ricchi di attrazioni. L’autobus è utile anche come complemento alla metro per tratte corte o direttrici non ben coperte sottoterra. Suggerimento: controlla a bordo quale porta usare per salire a seconda del modello di bus e convalida con un solo tap della carta per evitare addebiti multipli non desiderati.",
+      "metadata": {
+        "section_title": "Autobus a Madrid: come funzionano e quando usarli",
+        "links": [],
+        "addresses": [],
+        "image_urls": [],
+        "opening_hours": null,
+        "prices": "Corsa singola bus urbano: €1,50; 10 corse disponibili; pass turistici e mensili includono autobus blu"
+      }
+    },
+    {
+      "chunk_id": "trasporti/guida-trasporti-madrid-the-making-of-madrid__8",
+      "text": "La linea elettrica 001, nota come linea 0, offre un servizio a “emissioni zero a costo zero”: è gratuita e collega Atocha a Moncloa passando per Paseo del Prado, Gran Vía e Calle Princesa, coprendo un asse turistico e commerciale tra i più frequentati. L’utilità è evidente se hai budget limitato o vuoi spostarti tra musei, shopping e aree monumentali senza costi. L’altra faccia della medaglia è la domanda elevatissima: preparati a code spesso lunghe, soprattutto nelle ore centrali e nei weekend. Per riconoscerla cerca il display con “001” sul frontale. Se non vuoi attendere, valuta linee alternative a pagamento che percorrono tratti simili o considera un mix bus+metro. In ogni caso, la 001 è una risorsa eccellente per attraversare il cuore della città gratuitamente.",
+      "metadata": {
+        "section_title": "Bus gratuito 001: Atocha–Moncloa via centro",
+        "links": [],
+        "addresses": [],
+        "image_urls": [
+          "https://www.themakingofmadrid.com/wp-content/uploads/2025/05/Bus_linea_001_EMT_Madrid_03-1024x768.jpg"
+        ],
+        "opening_hours": null,
+        "prices": "Linea 001: gratuita"
+      }
+    },
+    {
+      "chunk_id": "trasporti/guida-trasporti-madrid-the-making-of-madrid__9",
+      "text": "I treni Cercanías coprono la cintura suburbana di Madrid e sono spesso più veloci della metro sulle lunghe percorrenze grazie a meno fermate. Sono ideali per collegare rapidamente aree distanti o raggiungere snodi come Atocha e Chamartín, oltre che per gite verso località servite dalla rete. Le tariffe partono da €1,60 e gli abbonamenti illimitati includono l’uso dei Cercanías entro la zona di validità. L’accesso è semplice: puoi pagare avvicinando la carta ai tornelli in ingresso e in uscita, evitando le macchinette. Se devi attraversare la città da nord a sud (o viceversa), spesso il Cercanías è più diretto della metro, specialmente durante le ore di punta. Suggerimento: verifica in anticipo la tua zona tariffaria e le linee C (es. C3, C4) che servono le stazioni più vicine al tuo alloggio.",
+      "metadata": {
+        "section_title": "Cercanías a Madrid: quando convengono",
+        "links": [],
+        "addresses": [],
+        "image_urls": [],
+        "opening_hours": null,
+        "prices": "Tariffe da €1,60; uso incluso nei pass illimitati entro zona"
+      }
+    },
+    {
+      "chunk_id": "trasporti/guida-trasporti-madrid-the-making-of-madrid__10",
+      "text": "Madrid dispone di due grandi stazioni per i treni a media e lunga percorrenza: Atocha e Chamartín. In linea di massima, da Atocha partono i treni verso località del sud e dell’est (ad es. Toledo e Barcellona), mentre da Chamartín si raggiungono città del nord come Segovia e Bilbao. Controlla sempre il dettaglio del tuo treno su renfe.com per sapere da quale stazione partirà. Se viaggi su AVE/alta velocità, arriva con anticipo per i controlli bagagli. Un vantaggio utile: se arrivi a Madrid con un treno AVE, puoi ottenere un biglietto Cercanías gratuito alle macchinette fuori dai tornelli inserendo il codice presente sul tuo biglietto AVE—un piccolo risparmio per gli spostamenti urbani di interscambio. Pianifica i trasferimenti tenendo conto di tempi, controlli e del passaggio tra le due stazioni principali, soprattutto se hai coincidenze strette.",
+      "metadata": {
+        "section_title": "Treni per altre città: Atocha e Chamartín",
+        "links": [
+          {
+            "text": "Controlla treni e stazioni su Renfe",
+            "url": "http://www.renfe.com/"
+          }
+        ],
+        "addresses": [],
+        "image_urls": [],
+        "opening_hours": null,
+        "prices": "Cercanías gratuito con codice su biglietto AVE (per trasferimenti)"
+      }
+    },
+    {
+      "chunk_id": "trasporti/guida-trasporti-madrid-the-making-of-madrid__11",
+      "text": "I taxi madrileni sono facili da riconoscere: bianchi con una diagonale rossa. All’interno della città le corse tipicamente costano tra €10 e €20, a seconda di distanza e traffico. Le tariffe sono regolamentate: Tariffa 1 per il giorno, Tariffa 2 per notte e weekend, Tariffa 3 nei festivi; sono previsti supplementi per servizi specifici come trasferimenti da/per l’aeroporto o stazioni. Se preferisci chiamarli via app, MyTaxi (ora Free Now) e Uber sono disponibili, con prezzi spesso in linea con i taxi tradizionali. Nota personale dell’autrice: alcuni conducenti maschi guidano in modo aggressivo, ma si tratta di eccezioni, e il numero di autiste donne è in aumento; gli autisti più anziani potrebbero non parlare inglese. In generale, il taxi è un’opzione comoda quando viaggi in gruppo, hai bagagli o devi rientrare tardi, ma considera il costo rispetto a metro e bus.",
+      "metadata": {
+        "section_title": "Taxi in città: tariffe, app e consigli",
+        "links": [],
+        "addresses": [],
+        "image_urls": [
+          "https://www.themakingofmadrid.com/wp-content/uploads/2022/12/SEAT_Toledo_IV_version_Taxi_1-1024x768.jpg"
+        ],
+        "opening_hours": null,
+        "prices": "Corse tipiche intraurbane: €10–€20; supplementi per aeroporto/stazioni; tariffe 1/2/3 secondo fascia"
+      }
+    },
+    {
+      "chunk_id": "trasporti/guida-trasporti-madrid-the-making-of-madrid__12",
+      "text": "Quando usi i trasporti pubblici a Madrid, porta sempre con te un titolo di viaggio valido e pronto da mostrare: controllerai possono chiederti di esibirlo in ingresso o in uscita e la mancanza comporta una multa. L’accessibilità è in miglioramento: autobus e metro prevedono spazi riservati per sedie a rotelle e passeggini, e bottoni di richiesta fermata a portata di mano; verifica però sulle mappe della metro quali stazioni dispongono di ascensori, soprattutto se pianifichi percorsi con cambi. Sui mezzi esistono posti a sedere prioritari per anziani, donne in gravidanza e persone con disabilità: è buona norma cedere il posto a chi ne ha bisogno. In generale, rispetta la fila, lascia scendere prima di salire, e mantieni la destra sulle scale mobili per non intralciare chi ha fretta. Piccoli gesti di cortesia e preparazione ti faranno risparmiare tempo e disagi, contribuendo a un viaggio più fluido per tutti.",
+      "metadata": {
+        "section_title": "Consigli pratici ed etichetta: multe, accessibilità, posti riservati",
+        "links": [],
+        "addresses": [],
+        "image_urls": [],
+        "opening_hours": null,
+        "prices": null
+      }
+    },
+    {
+      "chunk_id": "trasporti/guida-trasporti-madrid-the-making-of-madrid__13",
+      "text": "Per raggiungere Puerta del Sol dal tuo arrivo a Madrid, hai diverse opzioni. Il taxi dall’aeroporto è rapido, comodo e ha una tariffa fissa di €33 verso qualsiasi destinazione all’interno della M‑30, quindi ideale se viaggi con bagagli o in gruppo. In alternativa, dal Terminal 4 il Cercanías porta ad Atocha; da lì la Linea 1 della metro va direttamente a Sol (direzione Pinar de Chamartín). Dalle linee bus aeroportuali, la fermata a Cibeles ti lascia a breve distanza: puoi proseguire a piedi lungo Gran Vía fino a Sol o prendere un taxi per l’ultimo tratto. Talvolta l’autobus prosegue fino ad Atocha, permettendoti di scendere direttamente in stazione e cambiare con la Linea 1. Scegli in base a budget, bagagli e orario: taxi per massima comodità, Cercanías+metro per un buon compromesso costi/tempi, bus per risparmiare mantenendo un collegamento semplice con il centro.",
+      "metadata": {
+        "section_title": "Come arrivare a Sol (centro città)",
+        "links": [],
+        "addresses": [],
+        "image_urls": [
+          "https://www.themakingofmadrid.com/wp-content/uploads/2018/01/IMG_20231128_175834-1024x768.jpg"
+        ],
+        "opening_hours": null,
+        "prices": "Taxi aeroporto→entro M‑30: €33; bus aeroporto→Cibeles: ~€5"
+      }
+    }
+  ]
+}

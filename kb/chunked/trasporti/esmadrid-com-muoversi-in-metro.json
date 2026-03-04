@@ -1,0 +1,207 @@
+{
+  "source_file": "trasporti/esmadrid-com-muoversi-in-metro.md",
+  "page_title": "Muoversi a Madrid in metropolitana",
+  "page_summary": "Guida pratica alla metropolitana di Madrid: rete, orari, collegamenti con l’aeroporto, biglietti e tariffe, accessibilità e regole d’uso. Include risorse utili come mappe, abbonamenti turistici, negozio e podcast di Metro Madrid, oltre ai collegamenti regionali tramite Cercanías.",
+  "category": "trasporti",
+  "source_url": "https://www.esmadrid.com/en/getting-around-madrid-metro",
+  "processed_at": "2026-02-13T15:16:03.370Z",
+  "chunks": [
+    {
+      "chunk_id": "trasporti/esmadrid-com-muoversi-in-metro__0",
+      "text": "La metropolitana è il modo più veloce, efficiente e affidabile per muoversi a Madrid. Una delle reti più grandi d’Europa, conta oltre 300 stazioni distribuite su dodici linee di metropolitana, tre linee di Metro ligero (tram) e una linea speciale Ramal che collega Ópera a Príncipe Pío. Particolarmente utile per i visitatori è la Linea 8, che collega il centro (Nuevos Ministerios) all’Aeroporto Adolfo-Suárez Madrid Barajas: circa 20 minuti fino al Terminal 4 e 12 minuti fino ai Terminal 1, 2 e 3. La linea serve anche IFEMA Madrid, il polo fieristico della città. Il servizio opera dalle 6:00 alle 1:30, con treni ogni 2 minuti circa nelle ore di punta del mattino e ogni 15 minuti nelle primissime ore (dopo mezzanotte). Nei fine settimana la frequenza è generalmente ridotta durante il giorno. Alcune stazioni hanno orari diversi rispetto al resto della rete, tra cui Pitis (Linea 7) e il tratto tra Puerta de Arganda e Arganda del Rey. In caso di lavori, vengono attivati servizi sostitutivi con autobus senza costi aggiuntivi. Per aggiornamenti in tempo reale, pianificare il viaggio in anticipo e verificare eventuali interruzioni è sempre consigliato.",
+      "metadata": {
+        "section_title": "Panoramica della rete Metro e collegamenti chiave",
+        "links": [
+          {
+            "text": "Sito ufficiale di Metro de Madrid",
+            "url": "https://www.metromadrid.es/en/index.html"
+          }
+        ],
+        "addresses": [],
+        "image_urls": [],
+        "opening_hours": "Rete generale: 06:00-01:30 (frequenze variabili; weekend meno frequenti)",
+        "prices": null
+      }
+    },
+    {
+      "chunk_id": "trasporti/esmadrid-com-muoversi-in-metro__1",
+      "text": "Avviso Linea 6: a causa di lavori di ammodernamento notturni nei giorni feriali, il servizio termina alle 23:00 da domenica a giovedì. Il venerdì e il sabato si mantiene l’orario abituale (dalle 6:00 alle 1:30). Durante la chiusura serale, i passeggeri possono utilizzare gratuitamente un servizio speciale di autobus gestito da EMT Madrid lungo il tratto interessato. Si consiglia di prevedere tempi extra per gli spostamenti serali nei giorni feriali, seguire la segnaletica in stazione e consultare gli avvisi ufficiali prima del viaggio. Questo provvedimento è temporaneo e finalizzato a migliorare infrastrutture e impianti, quindi gli orari potrebbero tornare alla normalità al termine dei lavori. Per dettagli aggiornati sulle fermate coperte dal servizio sostitutivo, sugli orari e sulle eventuali variazioni, consultare il comunicato ufficiale riportato di seguito. In generale, Metro Madrid segnala eventuali interruzioni e fornisce soluzioni alternative senza sovrapprezzi per limitare i disagi agli utenti.",
+      "metadata": {
+        "section_title": "Avviso di servizio: lavori notturni sulla Linea 6",
+        "links": [
+          {
+            "text": "Servizio bus sostitutivo EMT Madrid (gratuito)",
+            "url": "http://www.madrid.es/portales/munimadrid/es/Inicio/Actualidad/Noticias/EMT-Madrid-arranca-esta-noche-un-servicio-especial-por-el-cierre-parcial-de-la-linea-6-de-Metro/?vgnextfmt=default&vgnextoid=63198c7843cab910VgnVCM200000f921e388RCRD&vgnextchannel=a12149fa40ec9410VgnVCM100000171f5a0aRCRD"
+          }
+        ],
+        "addresses": [],
+        "image_urls": [],
+        "opening_hours": "Linea 6: dom-gio 06:00-23:00; ven-sab 06:00-01:30 (orario consueto)",
+        "prices": "Servizio sostitutivo EMT Madrid: gratuito"
+      }
+    },
+    {
+      "chunk_id": "trasporti/esmadrid-com-muoversi-in-metro__2",
+      "text": "Tutti i biglietti a consumo (corsa singola o 10 corse) devono essere caricati sulla Tarjeta Multi, una smartcard contactless e trasferibile valida fino a 10 anni. La Tarjeta Multi costa 2,50 € e si acquista presso le stazioni di Metro e Metro ligero alle macchine con adesivo rosso “Tarjeta MULTI Disponible AQUÍ”, oltre che negli Estancos (tabaccai) e presso rivenditori autorizzati. Se acquisti l’Abbonamento Turistico (1, 2, 3, 5 o 7 giorni), la Tarjeta Multi è inclusa gratuitamente; al termine della validità dell’abbonamento, potrai ricaricare la stessa card con biglietti a corsa singola o da 10 viaggi. La card è pensata per semplificare l’utilizzo del trasporto pubblico e può essere usata da persone diverse (è trasferibile), ma ricorda che il titolo di viaggio caricato deve corrispondere all’uso previsto. Per chi prevede di spostarsi spesso in città, l’Abbonamento Turistico offre viaggi illimitati per il periodo scelto e può risultare più conveniente dei biglietti singoli.",
+      "metadata": {
+        "section_title": "Tarjeta Multi e Abbonamento Turistico: come funzionano",
+        "links": [
+          {
+            "text": "Tarjeta Multi",
+            "url": "http://www.crtm.es/billetes-y-tarifas/tarjeta-multi.aspx?lang=en"
+          },
+          {
+            "text": "Abbonamento Turistico",
+            "url": "https://www.esmadrid.com/en/madrid-tourist-travel-pass"
+          }
+        ],
+        "addresses": [],
+        "image_urls": [],
+        "opening_hours": null,
+        "prices": "Tarjeta Multi: €2,50; gratuita con Abbonamento Turistico (1, 2, 3, 5 o 7 giorni)"
+      }
+    },
+    {
+      "chunk_id": "trasporti/esmadrid-com-muoversi-in-metro__3",
+      "text": "Tariffe (valide fino al 31 dicembre 2026): Biglietto singolo Metro (Zona A e ML1): €1,50–€2,00. Il prezzo dipende dal numero di stazioni: fino a 5 stazioni €1,50; tra 6 e 9 stazioni supplemento di €0,10 per stazione; 10 o più stazioni €2,00. Combinado Metro (valido per l’intera rete Metro, TFM e sui Metros Ligeros de Madrid ML1 e Metro Ligero Oeste ML2 e ML3): €3,00. Biglietto 10 viaggi: titolo integrato Metro Zona A, autobus EMT e ML1 (Metrobús) €7,30; Combinado 10 viaggi €10,90. Biglietti da/per l’aeroporto: Biglietto singolo (*) + Supplemento Aeroporto €4,50–€5,00; solo Supplemento Aeroporto €3,00. Quando acquisti un singolo alla macchina, seleziona la destinazione: il sistema calcolerà automaticamente il percorso più breve e la tariffa corretta. Per titoli meno comuni (per esempio Metro ligero o linee suburbane), consulta la sezione ufficiale di Metro con i dettagli aggiornati.",
+      "metadata": {
+        "section_title": "Tariffe del Metro di Madrid",
+        "links": [
+          {
+            "text": "Sezione titoli e tariffe di Metro",
+            "url": "https://www.metromadrid.es/en/travel-in-the-metro/card-types"
+          }
+        ],
+        "addresses": [],
+        "image_urls": [],
+        "opening_hours": null,
+        "prices": "Singolo Zona A/ML1: €1,50–€2,00; Combinado Metro: €3,00; 10 viaggi (Zona A/EMT/ML1): €7,30; 10 viaggi Combinado: €10,90; Supplemento Aeroporto: €3,00; Singolo+Supplemento Aeroporto: €4,50–€5,00"
+      }
+    },
+    {
+      "chunk_id": "trasporti/esmadrid-com-muoversi-in-metro__4",
+      "text": "Accessibilità e consigli utili: molte stazioni (soprattutto le più frequentate) dispongono di ascensori; la mappa ufficiale del Metro indica chiaramente quali sono accessibili. I biglietti singoli della metropolitana scadono il giorno dell’acquisto. I biglietti singoli degli autobus non possono essere caricati sulla Tarjeta Multi e vanno acquistati a bordo. Anche i biglietti per la navetta Airport Express non si caricano sulla Tarjeta Multi e si comprano sull’autobus. Il sito di Metro offre un pianificatore di viaggio online per trovare il percorso più veloce. Se conti di usare spesso i mezzi, valuta l’Abbonamento Turistico con viaggi illimitati. I bambini sotto i 4 anni viaggiano gratis. Cani: è consentito portare un solo cane per passeggero, con guinzaglio e museruola, nell’ultima carrozza; accesso vietato nelle ore di punta del mattino e del pomeriggio. Biciclette: ammesse nei fine settimana e in fasce orarie specifiche nei giorni feriali. Dal 4 novembre 2023 è vietato accedere alla rete di trasporto pubblico della Comunidad de Madrid con monopattini elettrici, per ragioni di sicurezza.",
+      "metadata": {
+        "section_title": "Accessibilità, consigli e norme a bordo",
+        "links": [
+          {
+            "text": "Mappa ufficiale del Metro (PDF)",
+            "url": "https://www.metromadrid.es/sites/default/files/documentos/Viaja%20en%20Metro/Planos/Planoesquematico.pdf"
+          },
+          {
+            "text": "Airport Express",
+            "url": "https://www.esmadrid.com/en/airport-express"
+          },
+          {
+            "text": "Pianificatore di viaggio online",
+            "url": "https://www.metromadrid.es/en/viaja_en_metro/trayecto_recomendado/index.html"
+          },
+          {
+            "text": "Abbonamento Turistico",
+            "url": "https://www.esmadrid.com/en/madrid-tourist-travel-pass"
+          },
+          {
+            "text": "Info sui cani a bordo",
+            "url": "https://www.metromadrid.es/en/travel-in-the-metro/passenger-regulations/access-of-domestic-animals-to-the-underground-network"
+          },
+          {
+            "text": "Info sulle biciclette a bordo",
+            "url": "https://www.metromadrid.es/en/travel-in-the-metro/passenger-regulations/bicycle-access-in-the-metro-network"
+          },
+          {
+            "text": "Divieto di accesso ai monopattini elettrici",
+            "url": "https://www.comunidad.madrid/noticias/2023/10/27/comunidad-madrid-impedira-acceso-patinetes-electricos-transporte-publico-garantizar-seguridad-usuarios"
+          }
+        ],
+        "addresses": [],
+        "image_urls": [],
+        "opening_hours": null,
+        "prices": null
+      }
+    },
+    {
+      "chunk_id": "trasporti/esmadrid-com-muoversi-in-metro__5",
+      "text": "Per spostarsi tra Madrid e le località della regione, il servizio Cercanías di Renfe offre nove linee che partono o transitano per la stazione di Atocha, collegando la capitale con numerosi comuni, inclusi siti Patrimonio Mondiale come Alcalá de Henares, il Monastero di El Escorial e Aranjuez. Le linee fermano anche al Terminal 4 dell’Aeroporto Adolfo Suárez–Madrid Barajas, utile per chi arriva o parte in aereo e desidera proseguire in treno. I treni Cercanías sono una soluzione comoda per gite in giornata e itinerari fuori città, con frequenze regolari e integrazione con altri mezzi urbani. Consulta la pagina dedicata per informazioni su linee, tempi di percorrenza e collegamenti, e pianifica il tuo viaggio in base all’itinerario prescelto.",
+      "metadata": {
+        "section_title": "Spostarsi nella regione con Cercanías",
+        "links": [
+          {
+            "text": "Cercanías",
+            "url": "https://www.esmadrid.com/en/madrid-cercanias-train"
+          },
+          {
+            "text": "Aeroporto Adolfo Suárez–Madrid Barajas",
+            "url": "https://www.esmadrid.com/en/tourist-information/adolfo-suarez-madrid-barajas-airport"
+          }
+        ],
+        "addresses": [],
+        "image_urls": [],
+        "opening_hours": null,
+        "prices": null
+      }
+    },
+    {
+      "chunk_id": "trasporti/esmadrid-com-muoversi-in-metro__6",
+      "text": "Metro de Madrid dispone di un negozio ufficiale dove acquistare prodotti turistici e oggetti ispirati alla rete: accessori per la casa, decorazioni, libri, articoli per bambini e stampe. Oltre allo shop online, sono presenti due punti vendita fisici situati nella stazione di Sol e nella stazione di Plaza de Castilla, comodi da raggiungere durante un itinerario in città. È una tappa interessante per portare a casa un ricordo originale del tuo viaggio o per un regalo a tema ‘Metro’. Verifica online disponibilità, novità e collezioni: spesso sono presenti articoli in edizioni speciali che celebrano la storia e l’iconografia della metropolitana di Madrid.",
+      "metadata": {
+        "section_title": "Negozio ufficiale di Metro Madrid",
+        "links": [
+          {
+            "text": "Negozio ufficiale Metro de Madrid",
+            "url": "https://www.latiendademetrodemadrid.com/es/"
+          }
+        ],
+        "addresses": [],
+        "image_urls": [],
+        "opening_hours": null,
+        "prices": null
+      }
+    },
+    {
+      "chunk_id": "trasporti/esmadrid-com-muoversi-in-metro__7",
+      "text": "Vuoi scoprire curiosità, storia e il dietro le quinte del servizio? Il podcast di Metro de Madrid ti accompagna nella vita quotidiana della rete, raccontandone i servizi, le trasformazioni e aneddoti interessanti. È disponibile sulle principali piattaforme e rappresenta una risorsa piacevole per approfondire la cultura del trasporto pubblico madrileno. Per domande o segnalazioni, puoi contattare l’account X ufficiale @metro_madrid: il team risponde rapidamente e indirizza verso le informazioni utili. In alternativa, consulta la sezione comunicazione di Metro Madrid per comunicati, aggiornamenti e notizie legate al servizio. Restare informati con i canali ufficiali è particolarmente utile in caso di lavori, modifiche temporanee all’esercizio o eventi speciali che possono influire sugli orari e sulle frequenze.",
+      "metadata": {
+        "section_title": "Podcast, contatti e aggiornamenti ufficiali",
+        "links": [
+          {
+            "text": "Podcast di Metro de Madrid",
+            "url": "https://www.metromadrid.es/es/podcast"
+          },
+          {
+            "text": "Account X @metro_madrid",
+            "url": "https://twitter.com/metro_madrid?lang=es"
+          },
+          {
+            "text": "Sezione comunicazione di Metro Madrid",
+            "url": "https://www.metromadrid.es/es/buscar?type=2"
+          }
+        ],
+        "addresses": [],
+        "image_urls": [],
+        "opening_hours": null,
+        "prices": null
+      }
+    },
+    {
+      "chunk_id": "trasporti/esmadrid-com-muoversi-in-metro__8",
+      "text": "Per orientarti rapidamente, scarica le mappe ufficiali: la Mappa del Metro (PDF) con l’intera rete e la Mappa turistica del Metro (PDF), utile ai visitatori per pianificare spostamenti verso attrazioni ed eventi. Questi documenti sono aggiornati e facili da consultare offline sullo smartphone. La mappa standard aiuta a visualizzare corrispondenze e linee principali, mentre quella turistica è pensata per un uso immediato da parte dei viaggiatori. Ricorda che le stazioni accessibili sono chiaramente indicate nella mappa ufficiale del Metro; se viaggi con passeggino o ridotta mobilità, verifica in anticipo quali fermate dispongono di ascensori. Prima di partire, è utile salvare le mappe sul dispositivo o stamparle, in modo da averle a portata di mano anche senza connessione. Un buon abbinamento è usare la mappa insieme al pianificatore di viaggio online per individuare i cambi più comodi e i tempi di percorrenza.",
+      "metadata": {
+        "section_title": "Mappe del Metro di Madrid da scaricare",
+        "links": [
+          {
+            "text": "Mappa del Metro (PDF)",
+            "url": "https://www.esmadrid.com/en/madrid-metro-map"
+          },
+          {
+            "text": "Mappa turistica del Metro (PDF)",
+            "url": "https://www.esmadrid.com/en/madrid-metro-tourist-map-pdf"
+          }
+        ],
+        "addresses": [],
+        "image_urls": [],
+        "opening_hours": null,
+        "prices": null
+      }
+    }
+  ]
+}

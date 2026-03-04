@@ -1,0 +1,89 @@
+{
+  "source_file": "prenotazione-biglietti/museo-del-prado-pianifica-la-visita.md",
+  "page_title": "Museo del Prado — pianifica la visita",
+  "page_summary": "Pagina hub con tutte le informazioni pratiche per organizzare la visita al Museo del Prado: mostre temporanee, mappa, audioguide, visite guidate, servizi, ristorazione, negozio, itinerari consigliati, risorse online, orari e accesso gratuito. Include contatti utili e link per biglietti e come arrivare.",
+  "category": "prenotazione-biglietti",
+  "source_url": "https://www.museodelprado.es/en/visit/plan-your-visit",
+  "processed_at": "2026-02-13T14:50:04.015Z",
+  "chunks": [
+    {
+      "chunk_id": "prenotazione-biglietti/museo-del-prado-pianifica-la-visita__0",
+      "text": "Questa pagina è il punto di partenza per pianificare al meglio la tua visita al Museo del Prado. Troverai informazioni aggiornate su mostre temporanee, risorse utili come la mappa del Museo, audioguide e visite guidate alla Collezione, oltre a servizi di accoglienza (biglietteria, guardaroba, punti informazione), aree di sosta, opzioni di ristorazione (Café Prado, Salón de Té de la Galería Jónica) e il Prado Shop. Puoi anche esplorare itinerari consigliati per 1, 2 o 3 ore, ideali per ottimizzare il tempo, e accedere a risorse audiovisive e tour virtuali ad altissima risoluzione. Prima di arrivare, consulta gli orari di apertura, i giorni di chiusura e le fasce di accesso gratuito; verifica come raggiungere il Museo e acquista i biglietti online per evitare code. Se viaggi in gruppo o cerchi un percorso accessibile, ci sono opzioni dedicate. Inoltre, il calendario delle attività ti aiuta a scoprire cosa succede oggi in Museo. Tutti i link principali sono facilmente raggiungibili da questa pagina: orari e prezzi, mostre, visite di gruppo, visita accessibile, come arrivare, tour virtuali, biglietti online.",
+      "metadata": {
+        "section_title": "Panoramica: pianifica la tua visita",
+        "links": [
+          {
+            "text": "Orari e prezzi",
+            "url": "https://www.museodelprado.es/en/visit/opening-times-and-prices"
+          },
+          {
+            "text": "Vedi mostre temporanee",
+            "url": "https://www.museodelprado.es/en/whats-on/exhibitions"
+          },
+          {
+            "text": "Visita di gruppo",
+            "url": "https://www.museodelprado.es/en/visit/group-visit"
+          },
+          {
+            "text": "Visita accessibile",
+            "url": "https://www.museodelprado.es/en/visit/accessible-visit"
+          },
+          {
+            "text": "Come arrivare",
+            "url": "https://www.museodelprado.es/en/visit/getting-here"
+          },
+          {
+            "text": "Tour virtuali",
+            "url": "https://www.museodelprado.es/en/virtual-tours"
+          },
+          {
+            "text": "Biglietti online",
+            "url": "https://entradas.museodelprado.es/"
+          }
+        ],
+        "addresses": [],
+        "image_urls": [],
+        "opening_hours": null,
+        "prices": null
+      }
+    },
+    {
+      "chunk_id": "prenotazione-biglietti/museo-del-prado-pianifica-la-visita__1",
+      "text": "Il Prado propone mostre temporanee con accesso tramite biglietto a orario. Tra gli appuntamenti in calendario: \"The Prado Multiplied: Photography as Shared Memory\" (02/02/2026 – 04/05/2026), un percorso sulla fotografia come memoria condivisa del Museo; \"Anton Raphael Mengs (1728–1779)\" (25/11/2025 – 01/03/2026), monografica sul celebre pittore neoclassico; \"Juan Muñoz. Stories of Art\" (18/11/2025 – 08/03/2026), dedicata a uno dei grandi artisti spagnoli contemporanei; e \"The Martyrdom of Saint Andrew\" (03/03/2025 – 30/06/2026), focus su un capolavoro e il suo contesto. Verifica le date prima della visita e acquista i biglietti con fascia oraria per assicurarti l’accesso. Per un quadro completo di tutte le esposizioni in corso e future, consulta la pagina generale delle mostre temporanee. Ogni scheda mostra immagini, descrizione e informazioni pratiche.",
+      "metadata": {
+        "section_title": "Mostre temporanee: calendario e biglietti a orario",
+        "links": [
+          {
+            "text": "The Prado Multiplied: Photography as Shared Memory",
+            "url": "https://www.museodelprado.es/en/whats-on/exhibition/the-prado-multiplied-photography-as-shared-memory/2658bee2-97e8-d418-1e9d-94ae293bc637"
+          },
+          {
+            "text": "Anton Raphael Mengs (1728–1779)",
+            "url": "https://www.museodelprado.es/en/whats-on/exhibition/anton-raphael-mengs-1728-1779/4be2964e-3169-c21d-52ec-9c6caf24cbfb"
+          },
+          {
+            "text": "Juan Muñoz. Stories of Art",
+            "url": "https://www.museodelprado.es/en/whats-on/exhibition/juan-muoz-stories-of-art/499fbef9-c3c6-b73d-740f-7eeede62ca7e"
+          },
+          {
+            "text": "The Martyrdom of Saint Andrew",
+            "url": "https://www.museodelprado.es/en/whats-on/exhibition/the-martyrdom-of-saint-andrew/812ff002-8b36-b329-bbcd-ac809fdb1f27"
+          },
+          {
+            "text": "Vedi mostre temporanee",
+            "url": "https://www.museodelprado.es/en/whats-on/exhibitions"
+          }
+        ],
+        "addresses": [],
+        "image_urls": [
+          "https://content3.cdnprado.net/imagenes/Documentos/imgsem/26/2658/2658bee2-97e8-d418-1e9d-94ae293bc637/d0fbe06d-9317-c872-fc16-d77fa5d2da18_300.jpg",
+          "https://content3.cdnprado.net/imagenes/Documentos/imgsem/4b/4be2/4be2964e-3169-c21d-52ec-9c6caf24cbfb/a4aa0036-c0d2-b917-32d8-97f0b06a0c5f_300.jpg",
+          "https://content3.cdnprado.net/imagenes/Documentos/imgsem/49/499f/499fbef9-c3c6-b73d-740f-7eeede62ca7e/f4055505-778d-a227-a61a-a67781b7ef86_300.jpg",
+          "https://content3.cdnprado.net/imagenes/Documentos/imgsem/81/812f/812ff002-8b36-b329-bbcd-ac809fdb1f27/3a01a94c-3103-67da-489f-88c64e0d361b_300.jpg"
+        ],
+        "opening_hours": null,
+        "prices": null
+      }
+    }
+  ]
+}

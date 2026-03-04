@@ -1,0 +1,45 @@
+{
+  "source_file": "prenotazione-biglietti/museo-reina-sofia-faq.md",
+  "page_title": "Museo Reina Sofía — Domande frequenti",
+  "page_summary": "La pagina delle FAQ del Museo Reina Sofía non è disponibile (errore 404). Di seguito trovi collegamenti ufficiali utili per reperire rapidamente informazioni su visita, biglietti, mappa e contatti.",
+  "category": "prenotazione-biglietti",
+  "source_url": "https://www.museoreinasofia.es/en/visit/services/faq",
+  "processed_at": "2026-02-13T14:50:59.457Z",
+  "chunks": [
+    {
+      "chunk_id": "prenotazione-biglietti/museo-reina-sofia-faq__0",
+      "text": "Questa pagina delle Domande frequenti del Museo Reina Sofía non è disponibile (errore 404). Per trovare rapidamente le informazioni di cui hai bisogno, ti consigliamo di usare le sezioni ufficiali del sito. La pagina “Visita” raccoglie le informazioni pratiche per pianificare l’accesso al museo, mentre la “Mappa del museo (Plano)” ti aiuta a orientarti tra edifici e sale. Se devi acquistare ingressi in anticipo, usa il portale “Biglietti online”. Per assistenza diretta o richieste specifiche (ad esempio gruppi, scuole, o esigenze di accessibilità), consulta la pagina “Contatti”. In alternativa, puoi partire dalla pagina principale del Museo Reina Sofía per esplorare mostre, collezioni e attività in corso. L’indirizzo indicato del museo è Calle Santa Isabel, 52, 28012 Madrid. Se sei arrivato qui tramite un link obsoleto o errato, prova a tornare alla home page o a utilizzare la ricerca interna del sito. Suggerimento: nei periodi di maggiore affluenza conviene acquistare i biglietti online e controllare la mappa prima dell’arrivo; le informazioni tipiche delle FAQ (riduzioni, accessibilità, norme per bagagli, servizi) sono generalmente distribuite nelle pagine sopra indicate.",
+      "metadata": {
+        "section_title": "Pagina non trovata: dove reperire informazioni ufficiali su visita e biglietti",
+        "links": [
+          {
+            "text": "Pagina principale del Museo Reina Sofía",
+            "url": "https://www.museoreinasofia.es/"
+          },
+          {
+            "text": "Visita",
+            "url": "https://www.museoreinasofia.es/visita"
+          },
+          {
+            "text": "Mappa del museo (Plano)",
+            "url": "https://www.museoreinasofia.es/node/36999"
+          },
+          {
+            "text": "Contatti",
+            "url": "https://www.museoreinasofia.es/museo#contacto"
+          },
+          {
+            "text": "Biglietti online",
+            "url": "https://entradas.museoreinasofia.es/es"
+          }
+        ],
+        "addresses": [
+          "Calle Santa Isabel, 52, 28012 Madrid"
+        ],
+        "image_urls": [],
+        "opening_hours": null,
+        "prices": null
+      }
+    }
+  ]
+}

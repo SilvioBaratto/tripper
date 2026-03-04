@@ -1,0 +1,818 @@
+{
+  "title": "Madrid in 4 giorni: itinerario completo di gruppo per il 6–9 marzo 2026",
+  "city": "Madrid",
+  "start_date": "2026-03-06",
+  "end_date": "2026-03-09",
+  "days": [
+    {
+      "day_number": 1,
+      "date": "2026-03-06",
+      "title": "Giorno 1, venerdì 6 marzo",
+      "theme": "la Madrid reale e la prima ronda di tapas",
+      "activities": [
+        {
+          "start_time": "12:50",
+          "end_time": null,
+          "title": "Arrivo a Barajas Terminal 1",
+          "description": "Scesi dall'aereo si prenota un Uber.",
+          "activity_type": "TRANSPORT",
+          "place_name": "Barajas Terminal 1",
+          "address": null,
+          "neighborhood": null,
+          "price_min_cents": null,
+          "price_max_cents": null,
+          "price_note": null,
+          "highlights": [],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "13:45",
+          "end_time": null,
+          "title": "Lasciare i bagagli in hotel",
+          "description": "Check-in bagagli in hotel",
+          "activity_type": "REST",
+          "place_name": null,
+          "address": null,
+          "neighborhood": null,
+          "price_min_cents": null,
+          "price_max_cents": null,
+          "price_note": null,
+          "highlights": [],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "14:15",
+          "end_time": null,
+          "title": "Pranzo tardivo alla Casa Labra",
+          "description": "Casa Labra — questa tapería con posti in piedi serve il baccalà fritto più iconico di Madrid (tajadas de bacalao) a circa €2 l'una, più croquetas de bacalao (molto buone). Si ordina al bancone con una caña (birra alla spina piccola, €2,50).",
+          "activity_type": "MEAL",
+          "place_name": "Casa Labra",
+          "address": null,
+          "neighborhood": null,
+          "price_min_cents": 200,
+          "price_max_cents": 250,
+          "price_note": "tajadas de bacalao circa €2 l'una, caña €2,50",
+          "highlights": [
+            "tajadas de bacalao",
+            "croquetas de bacalao",
+            "caña (birra alla spina piccola)"
+          ],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "15:15",
+          "end_time": null,
+          "title": "Plaza Mayor + Mercado de San Miguel",
+          "description": "Da Casa Labra si scende per Calle de Postas fino a Plaza Mayor (3 min). Giro della piazza, foto, poi si esce dall'angolo nord-ovest verso il Mercado de San Miguel per un giro veloce e magari un'ostrica con cava o un bicchiere di vermouth al banco.",
+          "activity_type": "WALK",
+          "place_name": "Plaza Mayor + Mercado de San Miguel",
+          "address": null,
+          "neighborhood": null,
+          "price_min_cents": null,
+          "price_max_cents": null,
+          "price_note": null,
+          "highlights": [
+            "ostrica con cava",
+            "vermouth al banco"
+          ],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "15:45",
+          "end_time": null,
+          "title": "Camminata verso il Palacio Real",
+          "description": "10 min da Mercado de San Miguel lungo Calle del Arenal verso il Palacio Real",
+          "activity_type": "WALK",
+          "place_name": null,
+          "address": null,
+          "neighborhood": null,
+          "price_min_cents": null,
+          "price_max_cents": null,
+          "price_note": null,
+          "highlights": [],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "16:00",
+          "end_time": "17:30",
+          "title": "Palacio Real",
+          "description": "1,5–2 ore per una visita autonoma.",
+          "activity_type": "VISIT",
+          "place_name": "Palacio Real",
+          "address": null,
+          "neighborhood": null,
+          "price_min_cents": 1800,
+          "price_max_cents": 2600,
+          "price_note": "€18 autonomo / €26 guidato",
+          "highlights": [],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "17:45",
+          "end_time": "18:00",
+          "title": "Cattedrale dell'Almudena + Giardini di Sabatini",
+          "description": "Visita alla Cattedrale dell'Almudena e ai Giardini di Sabatini",
+          "activity_type": "VISIT",
+          "place_name": "Cattedrale dell'Almudena + Giardini di Sabatini",
+          "address": null,
+          "neighborhood": null,
+          "price_min_cents": null,
+          "price_max_cents": null,
+          "price_note": null,
+          "highlights": [],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "18:30",
+          "end_time": "19:30",
+          "title": "Tramonto al Templo de Debod",
+          "description": "L'interno del tempio richiede una prenotazione gratuita su madrid.es/debodreservas (l'esterno e le viste sono il vero spettacolo).",
+          "activity_type": "VISIT",
+          "place_name": "Templo de Debod",
+          "address": null,
+          "neighborhood": null,
+          "price_min_cents": 0,
+          "price_max_cents": 0,
+          "price_note": "gratuito con prenotazione su madrid.es/debodreservas",
+          "highlights": [
+            "tramonto",
+            "viste panoramiche"
+          ],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "19:30",
+          "end_time": null,
+          "title": "Camminata verso La Latina per cena",
+          "description": "20 min verso Calle de la Cava Baja, la leggendaria via delle tapas di Madrid — 300 metri con circa 50 bar e taberne.",
+          "activity_type": "WALK",
+          "place_name": null,
+          "address": null,
+          "neighborhood": "La Latina",
+          "price_min_cents": null,
+          "price_max_cents": null,
+          "price_note": null,
+          "highlights": [],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "20:30",
+          "end_time": "22:30",
+          "title": "Ronda di tapas su Cava Baja - Tappa 1 - Taberna La Concha",
+          "description": "Famosa per il vermouth fatto in casa spruzzato con gin e un tocco di Campari, servito in una coppa da martini. Da prendere le albóndigas caseras (polpette). A gestione familiare, intima, l'apertura perfetta.",
+          "activity_type": "MEAL",
+          "place_name": "Taberna La Concha",
+          "address": "Cava Baja",
+          "neighborhood": "La Latina",
+          "price_min_cents": 800,
+          "price_max_cents": 1000,
+          "price_note": "~€8–10/persona",
+          "highlights": [
+            "vermouth fatto in casa spruzzato con gin e Campari",
+            "albóndigas caseras"
+          ],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "20:30",
+          "end_time": "22:30",
+          "title": "Ronda di tapas su Cava Baja - Tappa 2 - Pez Tortilla",
+          "description": "La miglior tortilla española della città. Da provare la versione con cipolla caramellata — è leggendaria. Niente menu in inglese, si ordina al bancone. Posti in piedi, rumoroso, molto locale.",
+          "activity_type": "MEAL",
+          "place_name": "Pez Tortilla",
+          "address": "Cava Baja, 42",
+          "neighborhood": "La Latina",
+          "price_min_cents": 600,
+          "price_max_cents": 800,
+          "price_note": "~€6–8/persona",
+          "highlights": [
+            "tortilla española con cipolla caramellata"
+          ],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "20:30",
+          "end_time": "22:30",
+          "title": "Ronda di tapas su Cava Baja - Tappa 3 - Taberna El Tempranillo",
+          "description": "Scaffale di vini dal pavimento al soffitto, ottimi vini al calice da ogni regione spagnola. Qui le cose da prendere sono le gambas al ajillo (gamberi all'aglio) o la frittata di funghi selvatici.",
+          "activity_type": "MEAL",
+          "place_name": "Taberna El Tempranillo",
+          "address": "Cava Baja",
+          "neighborhood": "La Latina",
+          "price_min_cents": 1000,
+          "price_max_cents": 1400,
+          "price_note": "~€10–14/persona",
+          "highlights": [
+            "gambas al ajillo",
+            "frittata di funghi selvatici",
+            "vini al calice da ogni regione spagnola"
+          ],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "20:30",
+          "end_time": "22:30",
+          "title": "Ronda di tapas su Cava Baja - Tappa 4 - Casa Lucas",
+          "description": "Minuscolo, sempre pieno e secondo me saremo già sazzi. Da provare il rabo de toro (stufato di coda di bue) o la tosta con uovo al tartufo. Vini poco noti eccezionali.",
+          "activity_type": "MEAL",
+          "place_name": "Casa Lucas",
+          "address": "Cava Baja, 30",
+          "neighborhood": "La Latina",
+          "price_min_cents": 1200,
+          "price_max_cents": 1600,
+          "price_note": "~€12–16/persona",
+          "highlights": [
+            "rabo de toro (stufato di coda di bue)",
+            "tosta con uovo al tartufo",
+            "vini poco noti eccezionali"
+          ],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "22:30",
+          "end_time": null,
+          "title": "Drink serali",
+          "description": "Da lì si cammina 15 minuti verso est fino al Barrio de las Letras per un ultimo drink.",
+          "activity_type": "NIGHTLIFE",
+          "place_name": null,
+          "address": null,
+          "neighborhood": "Barrio de las Letras",
+          "price_min_cents": null,
+          "price_max_cents": null,
+          "price_note": null,
+          "highlights": [],
+          "is_alternative": false,
+          "alternative_to": null
+        }
+      ]
+    },
+    {
+      "day_number": 2,
+      "date": "2026-03-07",
+      "title": "Giorno 2, sabato 7 marzo",
+      "theme": "l'asse dell'arte, da Velázquez a Picasso",
+      "activities": [
+        {
+          "start_time": "09:00",
+          "end_time": null,
+          "title": "Colazione: churros con chocolate alla Chocolatería San Ginés",
+          "description": "Chocolatería San Ginés — Pasadizo de San Ginés, 5 (3 min da Sol). Cioccolata calda densa con churros sottili e croccanti o porras più spesse. Andando alle 9:00 di sabato si evita la fila peggiore.",
+          "activity_type": "MEAL",
+          "place_name": "Chocolatería San Ginés",
+          "address": "Pasadizo de San Ginés, 5",
+          "neighborhood": "Sol",
+          "price_min_cents": 550,
+          "price_max_cents": 550,
+          "price_note": "~€5,50 a persona",
+          "highlights": [
+            "cioccolata calda densa",
+            "churros sottili e croccanti",
+            "porras più spesse"
+          ],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "09:00",
+          "end_time": null,
+          "title": "Colazione: churros con chocolate alla Churrería Madrid 1883",
+          "description": "Churrería Madrid 1883 a Malasaña — ufficialmente la churrería più antica ancora attiva di Madrid, churros artigianali fatti al momento, cioccolata fondente vellutata.",
+          "activity_type": "MEAL",
+          "place_name": "Churrería Madrid 1883",
+          "address": null,
+          "neighborhood": "Malasaña",
+          "price_min_cents": 400,
+          "price_max_cents": 700,
+          "price_note": "€4–7/persona",
+          "highlights": [
+            "churros artigianali fatti al momento",
+            "cioccolata fondente vellutata"
+          ],
+          "is_alternative": true,
+          "alternative_to": "Colazione: churros con chocolate alla Chocolatería San Ginés"
+        },
+        {
+          "start_time": "10:00",
+          "end_time": "12:30",
+          "title": "Museo del Prado",
+          "description": "Il Prado ospita una delle raccolte più ricche al mondo di pittura europea. Con 2,5 ore, le sale essenziali su cui concentrarsi: Sala 12: Las Meninas di Velázquez; Sala 56A: Il Giardino delle Delizie di Bosch; Sale 64–67: Le 'Pitture Nere' di Goya; Sala 39: Il 3 maggio 1808 di Goya; Sala 29: Le Tre Grazie di Rubens; Sala 25: I dipinti mitologici di Tiziano.",
+          "activity_type": "VISIT",
+          "place_name": "Museo del Prado",
+          "address": "Calle de Ruiz de Alarcón, 23",
+          "neighborhood": null,
+          "price_min_cents": 1500,
+          "price_max_cents": 1500,
+          "price_note": "€15 (gratis studenti sotto i 25)",
+          "highlights": [
+            "Las Meninas di Velázquez (Sala 12)",
+            "Il Giardino delle Delizie di Bosch (Sala 56A)",
+            "Saturno che divora suo figlio di Goya (Sale 64-67)",
+            "Il 3 maggio 1808 di Goya (Sala 39)",
+            "Le Tre Grazie di Rubens (Sala 29)",
+            "dipinti mitologici di Tiziano (Sala 25)"
+          ],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "12:30",
+          "end_time": "13:10",
+          "title": "Jardín Botánico",
+          "description": "Si esce dal Prado dal lato sud e l'ingresso del Jardín Botánico è letteralmente a 1 minuto, su Plaza de Murillo. Fondato nel 1755, a inizio marzo si trovano già i mandorli in fiore e le prime camelie.",
+          "activity_type": "VISIT",
+          "place_name": "Jardín Botánico",
+          "address": "Plaza de Murillo",
+          "neighborhood": null,
+          "price_min_cents": 600,
+          "price_max_cents": 600,
+          "price_note": "€6 a persona (gratis studenti sotto i 25 con tessera ISIC)",
+          "highlights": [
+            "mandorli in fiore",
+            "camelie"
+          ],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "13:15",
+          "end_time": null,
+          "title": "Puerta de Alcalá",
+          "description": "5 min a piedi, sosta fotografica",
+          "activity_type": "WALK",
+          "place_name": "Puerta de Alcalá",
+          "address": null,
+          "neighborhood": null,
+          "price_min_cents": null,
+          "price_max_cents": null,
+          "price_note": null,
+          "highlights": [],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "13:20",
+          "end_time": "14:00",
+          "title": "Parco del Retiro",
+          "description": "Si entra dalla Puerta de la Independencia (l'ingresso più scenografico). Dritti verso il lago grande (Estanque), poi si scende verso il Palacio de Cristal. Il parco è il cuore verde di Madrid ed è anche il mio luogo del cuore in città. 40 minuti di passeggiata rilassata bastano per i punti principali.",
+          "activity_type": "WALK",
+          "place_name": "Parco del Retiro",
+          "address": null,
+          "neighborhood": null,
+          "price_min_cents": 0,
+          "price_max_cents": 0,
+          "price_note": null,
+          "highlights": [
+            "Estanque (lago grande)",
+            "Palacio de Cristal"
+          ],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "14:15",
+          "end_time": null,
+          "title": "Pranzo alla Bodegas Rosell",
+          "description": "Si cammina verso sud uscendo dal Retiro in direzione della stazione di Atocha (10 min). Bodegas Rosell (Calle del General Lacy, 14) versa vino dal 1920 e serve alcune delle migliori croquetas, bacalao al pil pil e vermouth artigianale di Madrid. Fuori dal circuito turistico — è in una via residenziale vicino alla stazione. Il menú del día del sabato è un ottimo affare.",
+          "activity_type": "MEAL",
+          "place_name": "Bodegas Rosell",
+          "address": "Calle del General Lacy, 14",
+          "neighborhood": "Atocha",
+          "price_min_cents": 1500,
+          "price_max_cents": 2200,
+          "price_note": "€15–22/persona",
+          "highlights": [
+            "croquetas",
+            "bacalao al pil pil",
+            "vermouth artigianale",
+            "menú del día del sabato"
+          ],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "14:15",
+          "end_time": null,
+          "title": "Pranzo da Badila",
+          "description": "Badila (Calle de San Pedro Mártir, 6) al confine tra Lavapiés e Letras — un locale minuscolo dove lo chef fa la spesa al mercato ogni mattina. Menú del día €12–15/persona.",
+          "activity_type": "MEAL",
+          "place_name": "Badila",
+          "address": "Calle de San Pedro Mártir, 6",
+          "neighborhood": "Lavapiés / Letras",
+          "price_min_cents": 1200,
+          "price_max_cents": 1500,
+          "price_note": "Menú del día €12–15/persona",
+          "highlights": [
+            "menú del día con ingredienti freschi dal mercato"
+          ],
+          "is_alternative": true,
+          "alternative_to": "Pranzo alla Bodegas Rosell"
+        },
+        {
+          "start_time": "15:30",
+          "end_time": "17:30",
+          "title": "Museo Reina Sofía",
+          "description": "Il Reina Sofía è il polo dell'arte moderna e contemporanea spagnola. Sala 206 (Piano 2): Guernica di Picasso — il più potente dipinto anti-guerra del XX secolo, largo oltre 7 metri. Fotografia vietata. Gallerie di Dalí: Il grande masturbatore, Ragazza alla finestra. Collezioni di Joan Miró e Juan Gris. Mostre temporanee.",
+          "activity_type": "VISIT",
+          "place_name": "Museo Reina Sofía",
+          "address": "Calle Santa Isabel, 52",
+          "neighborhood": null,
+          "price_min_cents": 1200,
+          "price_max_cents": 1200,
+          "price_note": "€12 (gratis studenti sotto i 25)",
+          "highlights": [
+            "Guernica di Picasso (Sala 206)",
+            "Il grande masturbatore di Dalí",
+            "Ragazza alla finestra di Dalí",
+            "Collezioni di Joan Miró",
+            "Collezioni di Juan Gris"
+          ],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "17:30",
+          "end_time": null,
+          "title": "Passeggiata per Lavapiés",
+          "description": "Dal museo si cammina verso sud nel quartiere più multiculturale di Madrid. Si scende per Calle de Embajadores ammirando i murales di street art, si sbircia dentro la Tabacalera (un'ex fabbrica di tabacchi trasformata in centro culturale gratuito con mostre a rotazione) e si assorbe l'energia cruda e diversa del barrio. Stare attenti che non ti rubino, rimane zona pericolosa per i borseggiatori.",
+          "activity_type": "WALK",
+          "place_name": null,
+          "address": null,
+          "neighborhood": "Lavapiés",
+          "price_min_cents": null,
+          "price_max_cents": null,
+          "price_note": null,
+          "highlights": [
+            "murales di street art",
+            "Tabacalera (centro culturale gratuito)"
+          ],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "18:15",
+          "end_time": "18:30",
+          "title": "Plaza de Cibeles, Palacio de Cibeles e Banco de España",
+          "description": "La Fuente de Cibeles (la dea sulla biga trainata da leoni) è la fontana più iconica di Madrid — è dove il Real Madrid festeggia le Champions. Alle sue spalle il Palacio de Cibeles (ex Palazzo delle Comunicazioni, oggi sede del Comune) è spettacolare dall'esterno. Di fronte, il Banco de España con la sua facciata neoclassica imponente. Sosta di 10–15 minuti per foto.",
+          "activity_type": "WALK",
+          "place_name": "Plaza de Cibeles",
+          "address": null,
+          "neighborhood": null,
+          "price_min_cents": null,
+          "price_max_cents": null,
+          "price_note": null,
+          "highlights": [
+            "Fuente de Cibeles",
+            "Palacio de Cibeles",
+            "Banco de España"
+          ],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "18:30",
+          "end_time": "19:30",
+          "title": "Cocktail al tramonto all'Azotea del Círculo de Bellas Artes",
+          "description": "Si paga l'ingresso di €5,50 alla macchinetta, si prende l'ascensore per il tetto e si accede alla migliore terrazza panoramica di Madrid. Viste a 360 gradi che spaziano sui tetti di inizio Novecento della Gran Vía, l'edificio Metropolis, il Palacio de Cibeles e i quattro grattacieli a nord. I cocktail costano €12, birra/vino €5–8. Il tramonto è verso le 18:50 a inizio marzo — meglio arrivare entro le 18:30 per assicurarsi un posto.",
+          "activity_type": "NIGHTLIFE",
+          "place_name": "Azotea del Círculo de Bellas Artes",
+          "address": "Calle del Marqués de Casa Riera, 2",
+          "neighborhood": null,
+          "price_min_cents": 550,
+          "price_max_cents": 1200,
+          "price_note": "ingresso €5,50, cocktail €12, birra/vino €5–8",
+          "highlights": [
+            "viste a 360 gradi su Madrid",
+            "tramonto verso le 18:50"
+          ],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "21:00",
+          "end_time": null,
+          "title": "Cena a La Carmencita",
+          "description": "La Carmencita — Calle de la Libertad, 16, Chueca. La seconda taberna più antica di Madrid, dove cenarono Lorca, Neruda e Alberti. L'interno conserva le piastrelle ottocentesche e il fascino d'epoca. Da prendere l'ensaladilla imperial, le croquetas de chistorra e qualsiasi carne alla griglia il cameriere raccomandi. Da prenotare in anticipo — il sabato sera si riempie in fretta.",
+          "activity_type": "MEAL",
+          "place_name": "La Carmencita",
+          "address": "Calle de la Libertad, 16",
+          "neighborhood": "Chueca",
+          "price_min_cents": 2000,
+          "price_max_cents": 3000,
+          "price_note": "€20–30/persona con vino",
+          "highlights": [
+            "ensaladilla imperial",
+            "croquetas de chistorra",
+            "carne alla griglia"
+          ],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "21:00",
+          "end_time": null,
+          "title": "Cena alla Taberna Antonio Sánchez",
+          "description": "Taberna Antonio Sánchez (Calle de Mesón de Paredes, 13, Lavapiés) — la taberna più antica di Madrid, aperta nel 1787. Bancone di zinco, pavimenti di legno scricchiolanti, tapas e raciones tradizionali.",
+          "activity_type": "MEAL",
+          "place_name": "Taberna Antonio Sánchez",
+          "address": "Calle de Mesón de Paredes, 13",
+          "neighborhood": "Lavapiés",
+          "price_min_cents": 1500,
+          "price_max_cents": 2200,
+          "price_note": "€15–22/persona",
+          "highlights": [
+            "tapas e raciones tradizionali",
+            "bancone di zinco",
+            "pavimenti di legno scricchiolanti"
+          ],
+          "is_alternative": true,
+          "alternative_to": "Cena a La Carmencita"
+        },
+        {
+          "start_time": "23:00",
+          "end_time": null,
+          "title": "Sabato sera fuori - El Tigre",
+          "description": "El Tigre (Calle de las Infantas, Chueca) è leggendario: ogni ordinazione di bevanda (€4–6) arriva con un enorme piatto gratuito di croquetas, tortilla, patatas bravas e altro. Caotico, rumoroso e amatissimo da locali e studenti — l'energia perfetta per un gruppo.",
+          "activity_type": "NIGHTLIFE",
+          "place_name": "El Tigre",
+          "address": "Calle de las Infantas",
+          "neighborhood": "Chueca",
+          "price_min_cents": 400,
+          "price_max_cents": 600,
+          "price_note": "€4–6 per bevanda con piatto gratuito incluso",
+          "highlights": [
+            "piatto gratuito enorme con ogni bevanda",
+            "croquetas",
+            "tortilla",
+            "patatas bravas"
+          ],
+          "is_alternative": false,
+          "alternative_to": null
+        }
+      ]
+    },
+    {
+      "day_number": 3,
+      "date": "2026-03-08",
+      "title": "Giorno 3, domenica 8 marzo",
+      "theme": "El Rastro, quartieri locali e flamenco",
+      "activities": [
+        {
+          "start_time": "09:00",
+          "end_time": null,
+          "title": "Colazione veloce vicino all'hotel",
+          "description": "Semplice e spagnola: si entra in un qualsiasi bar locale e si ordina un café con leche y tostada con tomate (caffellatte + pane tostato con pomodoro schiacciato e olio d'oliva)",
+          "activity_type": "MEAL",
+          "place_name": null,
+          "address": null,
+          "neighborhood": null,
+          "price_min_cents": 300,
+          "price_max_cents": 500,
+          "price_note": "€3–5",
+          "highlights": [
+            "café con leche",
+            "tostada con tomate"
+          ],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "09:30",
+          "end_time": "12:00",
+          "title": "Mercato delle pulci El Rastro",
+          "description": "Plaza de Cascorro fino a Ronda de Toledo, lungo Calle Ribera de Curtidores. El Rastro opera ogni domenica da oltre 400 anni. Circa 3.500 bancarelle vendono di tutto: vestiti vintage, dischi in vinile, antiquariato, pelletteria, ceramiche e curiosità. La via principale (Ribera de Curtidores) tende verso articoli nuovi e turistici. I veri tesori sono nelle vie laterali — Plaza del General Vara de Rey per l'antiquariato, Calle de Carlos Arniches per libri e dischi, e Plaza del Campillo del Mundo Nuevo per le stranezze.",
+          "activity_type": "SHOPPING",
+          "place_name": "El Rastro",
+          "address": "Plaza de Cascorro fino a Ronda de Toledo",
+          "neighborhood": "La Latina",
+          "price_min_cents": null,
+          "price_max_cents": null,
+          "price_note": null,
+          "highlights": [
+            "3.500 bancarelle",
+            "vestiti vintage",
+            "dischi in vinile",
+            "antiquariato",
+            "Plaza del General Vara de Rey (antiquariato)",
+            "Calle de Carlos Arniches (libri e dischi)",
+            "Plaza del Campillo del Mundo Nuevo (stranezze)"
+          ],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "12:00",
+          "end_time": "13:15",
+          "title": "Cañas post-Rastro su Cava Baja",
+          "description": "La tradizione domenicale a Madrid è perfettamente codificata: El Rastro la mattina, poi cañas (birre piccole) e tapas su Cava Baja. Tutto il quartiere de La Latina vibra di energia post-mercato. Una tappa alla La Perejila (Cava Baja) per vermouth alla spina, jamón ibérico e un sorbetto al mandarino alcolico, oppure si torna al Pez Tortilla.",
+          "activity_type": "MEAL",
+          "place_name": "La Perejila / Pez Tortilla",
+          "address": "Cava Baja",
+          "neighborhood": "La Latina",
+          "price_min_cents": null,
+          "price_max_cents": null,
+          "price_note": null,
+          "highlights": [
+            "vermouth alla spina",
+            "jamón ibérico",
+            "sorbetto al mandarino alcolico",
+            "tortilla española"
+          ],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "13:30",
+          "end_time": "14:30",
+          "title": "Pranzo al Mercado de San Fernando",
+          "description": "Si cammina 12 minuti verso sud entrando a Lavapiés fino al Mercado de San Fernando (Calle de Embajadores, 41). Questo mercato municipale del 1944 è l'anti-San Miguel — nessun luccichio, nessun ricarico turistico, solo un mercato coperto senza pretese dove venditori tradizionali di prodotti freschi condividono lo spazio con bancarelle internazionali. Ognuno nel gruppo sceglie il proprio pasto: polpo alla galiziana al Colmado de Lavapiés, pastel de nata portoghese al Mercadillo Lisboa, sidro asturiano e fabada al Guaje, ceviche di gamberetti premiato alla Tranca, o tacos dal banco messicano. Orari domenicali: 10:00 – 17:00.",
+          "activity_type": "MEAL",
+          "place_name": "Mercado de San Fernando",
+          "address": "Calle de Embajadores, 41",
+          "neighborhood": "Lavapiés",
+          "price_min_cents": 500,
+          "price_max_cents": 1200,
+          "price_note": "€5–12/persona",
+          "highlights": [
+            "polpo alla galiziana (Colmado de Lavapiés)",
+            "pastel de nata portoghese (Mercadillo Lisboa)",
+            "sidro asturiano e fabada (Guaje)",
+            "ceviche di gamberetti (Tranca)",
+            "tacos (banco messicano)"
+          ],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "15:00",
+          "end_time": "17:00",
+          "title": "Esplorare Malasaña",
+          "description": "Metro o camminata di 20 minuti verso nord fino al cuore bohémien di Madrid. Malasaña è nata dalla Movida Madrileña — l'esplosivo movimento controculturale degli anni '80 sbocciato dopo la morte di Franco. Si parte da Plaza del Dos de Mayo, poi si esplora: Calle del Espíritu Santo per negozi vintage e gallerie d'arte, Calle Velarde per boutique indipendenti e negozi di dischi, Calle San Vicente Ferrer per caffè alla moda e street art, Calle Fuencarral (il confine orientale) per lo shopping commerciale.",
+          "activity_type": "WALK",
+          "place_name": null,
+          "address": null,
+          "neighborhood": "Malasaña",
+          "price_min_cents": null,
+          "price_max_cents": null,
+          "price_note": null,
+          "highlights": [
+            "Plaza del Dos de Mayo",
+            "Calle del Espíritu Santo (vintage e gallerie)",
+            "Calle Velarde (boutique e dischi)",
+            "Calle San Vicente Ferrer (caffè e street art)",
+            "Calle Fuencarral (shopping)"
+          ],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "15:00",
+          "end_time": "17:00",
+          "title": "Tappa alla Bodega de la Ardosa",
+          "description": "Bodega de la Ardosa (Calle de Colón, 13) — un'istituzione delle tapas dal 1892 con bottiglie impolverate, piastrelle d'epoca, la spina di Guinness più antica di Spagna e quella che molti locali considerano la miglior tortilla de patatas di Madrid. Si prende la tortilla, un salmorejo e un vermouth alla spina. Niente prenotazioni; meglio arrivare prima delle 17:00 per evitare la ressa serale.",
+          "activity_type": "MEAL",
+          "place_name": "Bodega de la Ardosa",
+          "address": "Calle de Colón, 13",
+          "neighborhood": "Malasaña",
+          "price_min_cents": 800,
+          "price_max_cents": 1500,
+          "price_note": "€8–15/persona",
+          "highlights": [
+            "tortilla de patatas (considerata la migliore di Madrid)",
+            "salmorejo",
+            "vermouth alla spina",
+            "spina di Guinness più antica di Spagna"
+          ],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "17:30",
+          "end_time": null,
+          "title": "Rientro in hotel, riposo, rinfrescarsi",
+          "description": "Meglio risparmiare le energie per la sera. Uno spettacolo di flamenco richiede tutta l'attenzione.",
+          "activity_type": "REST",
+          "place_name": null,
+          "address": null,
+          "neighborhood": null,
+          "price_min_cents": null,
+          "price_max_cents": null,
+          "price_note": null,
+          "highlights": [],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "19:15",
+          "end_time": null,
+          "title": "Cena anticipata alla Taberna Sanlúcar",
+          "description": "Taberna Sanlúcar — Calle de San Isidro Labrador, 14 (Metro: La Latina). Una taverna andalusa con un'anima profondamente flamenca — foto di cantanti alle pareti, sherry da Sanlúcar de Barrameda ed eccellenti tortillitas de camarones (frittelle di gamberetti) e huevos rotos. Il riscaldamento atmosferico perfetto per quello che viene dopo. Meglio mangiare entro le 20:00 per arrivare allo spettacolo.",
+          "activity_type": "MEAL",
+          "place_name": "Taberna Sanlúcar",
+          "address": "Calle de San Isidro Labrador, 14",
+          "neighborhood": "La Latina",
+          "price_min_cents": 1500,
+          "price_max_cents": 2000,
+          "price_note": "€15–20/persona",
+          "highlights": [
+            "tortillitas de camarones (frittelle di gamberetti)",
+            "huevos rotos",
+            "sherry da Sanlúcar de Barrameda"
+          ],
+          "is_alternative": false,
+          "alternative_to": null
+        },
+        {
+          "start_time": "20:30",
+          "end_time": "21:45",
+          "title": "Flamenco al Café Ziryab",
+          "description": "Il Café Ziryab è ampiamente considerato il tablao meno turistico di Madrid. Fondato nel 2015 da una ballerina professionista di flamenco, si trova nel quartiere residenziale di Acacias — volutamente lontano dal centro turistico. Lo spazio contiene appena 80 posti. Spettacoli mercoledì–domenica alle 18:30 e 20:30; durata 60–75 minuti.",
+          "activity_type": "SHOW",
+          "place_name": "Café Ziryab",
+          "address": "Paseo de la Esperanza, 17, 28005 Madrid",
+          "neighborhood": "Acacias",
+          "price_min_cents": 3200,
+          "price_max_cents": 3200,
+          "price_note": "€32/persona inclusa una bevanda",
+          "highlights": [
+            "tablao meno turistico di Madrid",
+            "80 posti",
+            "spettacolo 60-75 minuti"
+          ],
+          "is_alternative": false,
+          "alternative_to": null
+        }
+      ]
+    }
+  ],
+  "bookings": [
+    {
+      "attraction_name": "Museo del Prado",
+      "price_cents": 1500,
+      "discount_note": "gratis studenti sotto i 25",
+      "booking_url": "https://entradas.museodelprado.es/"
+    },
+    {
+      "attraction_name": "Museo Reina Sofía",
+      "price_cents": 1200,
+      "discount_note": "gratis studenti sotto i 25",
+      "booking_url": "https://entradas.museodelprado.es/"
+    },
+    {
+      "attraction_name": "Palacio Real",
+      "price_cents": 1800,
+      "discount_note": "€18 autonomo / €26 guidato",
+      "booking_url": "tickets.patrimonionacional.es"
+    },
+    {
+      "attraction_name": "Café Ziryab flamenco",
+      "price_cents": 3200,
+      "discount_note": "include 1 bevanda",
+      "booking_url": "cafeziryab.com"
+    },
+    {
+      "attraction_name": "Templo de Debod (interno)",
+      "price_cents": 0,
+      "discount_note": "prenotazione gratuita necessaria per l'interno",
+      "booking_url": "madrid.es/debodreservas"
+    }
+  ],
+  "tips": [
+    {
+      "category": "TRANSPORT",
+      "content": "Si prende una Multi card (5 euro circa) e si caricano €7.30 euro circa per 10 biglietti"
+    },
+    {
+      "category": "TRANSPORT",
+      "content": "Scesi dall'aereo a Barajas Terminal 1 si prenota un Uber"
+    },
+    {
+      "category": "SAFETY",
+      "content": "Lavapiés: Stare attenti che non ti rubino, rimane zona pericolosa per i borseggiatori"
+    },
+    {
+      "category": "SAFETY",
+      "content": "El Rastro: Attenzione ai borseggiatori — questo è il punto più caldo di Madrid per i furti"
+    },
+    {
+      "category": "BUDGET",
+      "content": "El Rastro: Meglio portare contanti (molti venditori non accettano carte). Contrattare è la norma."
+    },
+    {
+      "category": "BUDGET",
+      "content": "Costo totale della cena lungo la ronda di tapas su Cava Baja: ~€35–45/persona incluse le bevande a ogni tappa"
+    }
+  ]
+}
