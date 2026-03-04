@@ -1,4 +1,4 @@
-<div class="min-h-screen bg-surface">
+<div class="min-h-dvh bg-surface">
   <!-- Mobile header -->
   <header class="md:hidden flex items-center justify-between h-14 px-4 border-b border-border bg-surface-raised sticky top-0 z-30">
     <button (click)="toggleSidebar()" class="p-1.5 rounded-md text-text-secondary hover:text-text hover:bg-surface-inset transition-colors" aria-label="Open menu">
@@ -19,7 +19,7 @@
   <app-sidebar [isOpen]="isSidebarOpen()" [isMobile]="isMobile()" (closeSidebar)="closeSidebar()"></app-sidebar>
 
   <!-- Main content -->
-  <main class="md:pl-64 h-[calc(100vh-3.5rem)] md:h-screen flex flex-col">
+  <main class="md:pl-64 h-[calc(100dvh-3.5rem)] md:h-dvh flex flex-col">
     <router-outlet></router-outlet>
   </main>
 </div>
