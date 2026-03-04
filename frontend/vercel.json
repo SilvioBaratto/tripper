@@ -5,11 +5,11 @@
   "installCommand": "npm install",
   "rewrites": [
     {
-      "source": "/api/v1/:path*",
-      "destination": "https://api-iota-two-41.vercel.app/api/v1/:path*"
+      "source": "/api/:match*",
+      "destination": "https://api-iota-two-41.vercel.app/api/:match*"
     },
     {
-      "source": "/(.*)",
+      "source": "/((?!api/).*)",
       "destination": "/index.html"
     }
   ],
