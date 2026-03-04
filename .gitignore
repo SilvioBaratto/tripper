@@ -281,3 +281,6 @@ postgres_data/
 .Spotlight-V100
 .Trashes
 ehthumbs.db
+
+# PDF plans
+plan_it.pdf

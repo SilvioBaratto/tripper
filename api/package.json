@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "nest build",
-    "vercel-build": "npx prisma generate && npx baml-cli generate && nest build",
+    "vercel-build": "npx prisma generate && npx baml-cli generate && nest build && tsc-alias -p tsconfig.json",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
@@ -60,6 +60,7 @@
     "prisma-zod-generator": "^2.1.2",
     "ts-jest": "^29.2.0",
     "ts-node": "^10.9.0",
+    "tsc-alias": "^1.8.16",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.7.0"
   },

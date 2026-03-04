@@ -23,8 +23,8 @@ jest.config*
 # Seed scripts (not needed at runtime)
 scripts/
 
-# BAML source definitions (the generated client is what matters)
-baml_src/
+# BAML source definitions are needed at build time for baml-cli generate
+# baml_src/
 
 # README files
 README.md
