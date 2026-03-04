@@ -21,7 +21,7 @@
     "prisma:migrate:deploy": "npx prisma migrate deploy",
     "prisma:migrate:reset": "npx prisma migrate reset",
     "prisma:studio": "npx prisma studio",
-    "postinstall": "npx prisma generate",
+    "postinstall": "npx prisma generate || true",
     "seed:madrid": "ts-node -r tsconfig-paths/register scripts/seed-madrid.ts"
   },
   "dependencies": {

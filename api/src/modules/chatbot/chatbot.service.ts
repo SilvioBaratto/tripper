@@ -62,11 +62,10 @@ export class ChatbotService {
         sources: result.sources ?? [],
       };
     } catch (error) {
-      const errMsg = error instanceof Error ? error.message : String(error);
-      this.logger.error(`Chat error: ${errMsg}`, error instanceof Error ? error.stack : '');
+      this.logger.error(`Chat error: ${error}`);
       return {
         ...EMPTY_RICH,
-        text: `Mi dispiace, si è verificato un errore. Riprova più tardi. [DEBUG: ${errMsg}]`,
+        text: 'Mi dispiace, si è verificato un errore. Riprova più tardi.',
       };
     }
   }
@@ -120,12 +119,11 @@ export class ChatbotService {
         done: true,
       };
     } catch (error) {
-      const errMsg = error instanceof Error ? error.message : String(error);
-      this.logger.error(`Stream chat error: ${errMsg}`, error instanceof Error ? error.stack : '');
+      this.logger.error(`Stream chat error: ${error}`);
       yield {
         type: 'error',
         data: {
-          text: `Mi dispiace, si è verificato un errore. Riprova più tardi. [DEBUG: ${errMsg}]`,
+          text: 'Mi dispiace, si è verificato un errore. Riprova più tardi.',
         },
         done: true,
       };
