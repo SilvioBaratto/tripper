@@ -10,9 +10,11 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ChatService } from '../../services/chat.service';
 import { ChatMessage, RichContent } from '../../models/chat.model';
+import { MarkdownPipe } from '../../shared/pipes/markdown.pipe';
 
 @Component({
   selector: 'app-chatbot',
+  imports: [MarkdownPipe],
   templateUrl: './chatbot.html',
   styleUrl: './chatbot.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -27,6 +29,11 @@ export class ChatbotComponent {
   messages = signal<ChatMessage[]>([]);
   isLoading = signal(false);
   userInput = signal('');
+
+  quickPrompt(text: string) {
+    this.userInput.set(text);
+    this.onSend();
+  }
 
   onInputChange(event: Event) {
     const textarea = event.target as HTMLTextAreaElement;

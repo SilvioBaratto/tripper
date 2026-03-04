@@ -4,15 +4,24 @@
     aria-live="polite">
     @if (messages().length === 0) {
     <div class="flex items-center justify-center h-full">
-      <div class="text-center max-w-sm">
-        <div class="w-12 h-12 mx-auto mb-4 rounded-2xl bg-accent/10 flex items-center justify-center">
-          <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" />
-          </svg>
+      <div class="text-center max-w-sm animate-fade-in-up">
+        <div class="text-4xl mb-3" aria-hidden="true">&#127466;&#127480;</div>
+        <h2 class="text-lg font-display font-bold text-text mb-1">Hola! Welcome to Madrid</h2>
+        <p class="text-sm text-text-secondary mb-5">Ask me anything about Madrid — restaurants, museums, nightlife, local tips, and more.</p>
+        <div class="flex flex-wrap justify-center gap-2">
+          <button (click)="quickPrompt('What are the best tapas bars in La Latina?')"
+            class="px-3 py-1.5 text-xs font-medium rounded-full border border-border bg-surface-raised text-text-secondary hover:text-primary hover:border-primary/30 hover:bg-primary-light transition-colors">
+            Best tapas bars in La Latina?
+          </button>
+          <button (click)="quickPrompt('What should I see in one day in Madrid?')"
+            class="px-3 py-1.5 text-xs font-medium rounded-full border border-border bg-surface-raised text-text-secondary hover:text-primary hover:border-primary/30 hover:bg-primary-light transition-colors">
+            One day in Madrid?
+          </button>
+          <button (click)="quickPrompt('How do I get from the airport to the city center?')"
+            class="px-3 py-1.5 text-xs font-medium rounded-full border border-border bg-surface-raised text-text-secondary hover:text-primary hover:border-primary/30 hover:bg-primary-light transition-colors">
+            Airport to city center?
+          </button>
         </div>
-        <h2 class="text-base font-semibold text-text mb-1">Start a conversation</h2>
-        <p class="text-sm text-text-secondary">Ask anything about Madrid to get started.</p>
       </div>
     </div>
     } @else {
@@ -20,9 +29,9 @@
       @for (msg of messages(); track msg.id) {
       <!-- User bubble -->
       @if (msg.role === 'user') {
-      <div class="flex justify-end">
+      <div class="flex justify-end animate-fade-in-up">
         <div
-          class="max-w-[80%] rounded-2xl rounded-br-md px-4 py-2.5 bg-accent text-white text-sm leading-relaxed whitespace-pre-wrap">
+          class="max-w-[80%] rounded-2xl rounded-br-md px-4 py-2.5 bg-primary text-white text-sm leading-relaxed whitespace-pre-wrap">
           {{ msg.content }}
         </div>
       </div>
@@ -45,17 +54,30 @@
       }
       <!-- Assistant bubble with rich content -->
       @else {
-      <div class="flex justify-start">
-        <div class="max-w-[80%] rounded-2xl rounded-bl-md px-4 py-2.5 bg-zinc-100 text-text text-sm leading-relaxed">
+      <div class="flex justify-start gap-2 animate-fade-in-up">
+        <!-- Avatar -->
+        <div class="w-7 h-7 rounded-full bg-primary-light border border-primary/20 flex items-center justify-center shrink-0 mt-0.5">
+          <span class="text-xs font-display font-bold text-primary">t</span>
+        </div>
+        <div class="max-w-full md:max-w-[90%] min-w-0 rounded-2xl rounded-bl-md px-4 py-2.5 bg-surface-raised border border-border text-text text-sm leading-relaxed">
 
-          <!-- Main text -->
+          <!-- Main text (rendered as markdown) -->
           @if (msg.content) {
-          <div class="whitespace-pre-wrap">{{ msg.content }}</div>
+          <div class="prose-chat" [innerHTML]="msg.content | markdown"></div>
           }
 
-          <!-- Streaming cursor -->
-          @if (msg.isStreaming) {
-          <span class="inline-block w-1.5 h-4 bg-accent/70 animate-pulse rounded-sm ml-0.5 align-text-bottom"></span>
+          <!-- Typing indicator (three bouncing dots) -->
+          @if (msg.isStreaming && !msg.content) {
+          <div class="flex items-center gap-1.5 py-1">
+            <span class="typing-dot typing-dot-1"></span>
+            <span class="typing-dot typing-dot-2"></span>
+            <span class="typing-dot typing-dot-3"></span>
+          </div>
+          }
+
+          <!-- Streaming cursor (shown once text starts arriving) -->
+          @if (msg.isStreaming && msg.content) {
+          <span class="inline-block w-1.5 h-4 bg-primary/70 animate-pulse rounded-sm ml-0.5 align-text-bottom"></span>
           }
 
           <!-- Images -->
@@ -79,7 +101,7 @@
           <div class="flex flex-wrap gap-1.5 mt-3">
             @for (link of msg.richContent!.links!; track link.url) {
             <a [href]="link.url" target="_blank" rel="noopener"
-              class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium hover:bg-accent/20 transition-colors">
+              class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium hover:bg-primary/20 transition-colors">
               <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round"
                   d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
@@ -95,8 +117,8 @@
           <div class="space-y-1.5 mt-3">
             @for (map of msg.richContent!.map_links!; track map.maps_url) {
             <a [href]="map.maps_url" target="_blank" rel="noopener"
-              class="flex items-center gap-2 px-3 py-2 rounded-lg bg-white border border-border hover:border-accent/30 hover:shadow-sm transition-all">
-              <svg class="w-4 h-4 text-red-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              class="flex items-center gap-2 px-3 py-2 rounded-lg bg-white border border-border hover:border-primary/30 hover:shadow-sm transition-all">
+              <svg class="w-4 h-4 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                 stroke-width="1.5">
                 <path stroke-linecap="round" stroke-linejoin="round"
                   d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
@@ -114,26 +136,25 @@
 
           <!-- Tables -->
           @if (msg.richContent?.tables?.length) {
-          <div class="space-y-3 mt-3">
+          <div class="space-y-3 mt-3 -mx-4 px-4">
             @for (table of msg.richContent!.tables!; track table.title) {
             <div class="overflow-x-auto rounded-lg border border-border table-scroll">
               @if (table.title) {
-              <div class="px-3 py-1.5 bg-zinc-200 text-xs font-semibold text-text">{{ table.title }}</div>
+              <div class="px-3 py-1.5 bg-surface-inset text-xs font-semibold text-text">{{ table.title }}</div>
               }
               <table class="w-full text-xs">
                 <thead>
-                  <tr class="bg-zinc-50">
+                  <tr class="bg-surface-inset/60">
                     @for (header of table.headers; track header) {
-                    <th class="px-3 py-1.5 text-left font-medium text-text-secondary whitespace-nowrap">{{ header }}
-                    </th>
+                    <th class="px-3 py-1.5 text-left font-medium text-text-secondary">{{ header }}</th>
                     }
                   </tr>
                 </thead>
                 <tbody>
                   @for (row of table.rows; track $index) {
-                  <tr class="border-t border-border" [class]="$index % 2 === 1 ? 'bg-zinc-50/50' : ''">
+                  <tr class="border-t border-border" [class]="$index % 2 === 1 ? 'bg-surface-inset/30' : ''">
                     @for (cell of row; track $index) {
-                    <td class="px-3 py-1.5 text-text whitespace-nowrap">{{ cell }}</td>
+                    <td class="px-3 py-1.5 text-text">{{ cell }}</td>
                     }
                   </tr>
                   }
@@ -146,12 +167,12 @@
 
           <!-- Sources -->
           @if (msg.richContent?.sources?.length && !msg.isStreaming) {
-          <div class="mt-3 pt-2 border-t border-zinc-200/80">
-            <div class="text-xs text-text-secondary mb-1">Fonti:</div>
+          <div class="mt-3 pt-2 border-t border-border-muted">
+            <div class="text-xs text-text-secondary mb-1">Sources:</div>
             <div class="flex flex-wrap gap-1">
               @for (source of msg.richContent!.sources!; track source.url) {
               <a [href]="source.url" target="_blank" rel="noopener"
-                class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-zinc-200/60 text-xs text-text-secondary hover:text-accent hover:bg-accent/10 transition-colors">
+                class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-inset text-xs text-text-secondary hover:text-primary hover:bg-primary/10 transition-colors">
                 <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round"
                     d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
@@ -172,14 +193,14 @@
   </div>
 
   <!-- Input bar -->
-  <div class="border-t border-border bg-surface-raised px-4 py-3 md:px-8">
+  <div class="px-4 py-3 md:px-8">
     <form (ngSubmit)="onSend()" class="max-w-3xl mx-auto flex items-end gap-2">
       <textarea aria-label="Chat message"
-        class="flex-1 resize-none rounded-xl border border-border bg-surface px-4 py-2.5 text-sm text-text placeholder:text-text-secondary/60 focus:outline-none focus:ring-1 focus:ring-accent/50 focus:border-accent/50 transition-colors"
-        rows="1" placeholder="Chiedi qualcosa su Madrid..." [value]="userInput()" (input)="onInputChange($event)"
+        class="flex-1 resize-none rounded-xl border-none bg-surface-raised shadow-sm px-4 py-2.5 text-sm text-text placeholder:text-text-secondary/60 focus:outline-none focus:ring-1 focus:ring-primary/50 transition-colors"
+        rows="1" placeholder="Ask me anything about Madrid..." [value]="userInput()" (input)="onInputChange($event)"
         (keydown.enter)="onKeydown($event)" [disabled]="isLoading()" #inputEl></textarea>
       <button type="submit" aria-label="Send message" [disabled]="isLoading() || !userInput().trim()"
-        class="shrink-0 flex items-center justify-center w-11 h-11 rounded-xl bg-accent hover:bg-accent/90 disabled:opacity-40 disabled:cursor-not-allowed text-white transition-colors">
+        class="shrink-0 flex items-center justify-center w-11 h-11 rounded-xl bg-primary hover:bg-primary-hover disabled:opacity-40 disabled:cursor-not-allowed text-white transition-colors">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round"
             d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />

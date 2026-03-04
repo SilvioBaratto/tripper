@@ -5,7 +5,7 @@ import { AuthService } from '../../services/auth.service';
 interface NavItem {
   name: string;
   route: string;
-  icon: 'chat';
+  icon: 'chat' | 'map';
 }
 
 @Component({
@@ -26,6 +26,7 @@ export class SidebarComponent {
 
   navItems: NavItem[] = [
     { name: 'Chatbot', route: '/', icon: 'chat' },
+    { name: 'Itinerary', route: '/itinerary', icon: 'map' },
   ];
 
   showSidebar = computed(() => !this.isMobile() || this.isOpen());

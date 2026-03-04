@@ -1,25 +1,36 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-sans: 'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
-  /* Surface colors */
-  --color-surface: #fafafa;
+  /* Surface colors — warm off-whites */
+  --color-surface: #faf8f5;
   --color-surface-raised: #ffffff;
-  --color-surface-inset: #f4f4f5;
+  --color-surface-inset: #f5f0eb;
 
-  /* Border */
-  --color-border: #e4e4e7;
-  --color-border-muted: #f4f4f5;
+  /* Borders — warm grays */
+  --color-border: #e8e0d8;
+  --color-border-muted: #f0ebe5;
 
-  /* Text */
-  --color-text: #18181b;
-  --color-text-secondary: #71717a;
-  --color-text-tertiary: #a1a1aa;
+  /* Text — warm near-black */
+  --color-text: #1a1614;
+  --color-text-secondary: #6b5e54;
+  --color-text-tertiary: #a39688;
 
-  /* Accent (dark zinc) */
-  --color-accent: #27272a;
-  --color-accent-hover: #3f3f46;
+  /* Primary — Terracotta */
+  --color-primary: #c45d3e;
+  --color-primary-hover: #b04e31;
+  --color-primary-light: #fdf0ec;
+
+  /* Accent — Azulejo blue */
+  --color-accent: #2d4a7a;
+  --color-accent-hover: #1e3a66;
+  --color-accent-light: #edf2f9;
+
+  /* Gold */
+  --color-gold: #c8982c;
 
   /* Semantic */
   --color-danger: #dc2626;
@@ -35,7 +46,38 @@ html {
 }
 
 *:focus-visible {
-  outline: 2px solid #a1a1aa;
+  outline: 2px solid #c45d3e;
   outline-offset: 2px;
   border-radius: 4px;
+}
+
+/* Animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.3s ease-out both;
+}
+
+.animate-slide-in {
+  animation: slide-in 0.2s ease-out both;
 }
