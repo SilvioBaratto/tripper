@@ -43,9 +43,8 @@ export class ChatbotComponent {
     textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
   }
 
-  onKeydown(event: Event) {
-    const keyEvent = event as KeyboardEvent;
-    if (!keyEvent.shiftKey) {
+  onKeydown(event: KeyboardEvent) {
+    if (!event.shiftKey && !event.isComposing) {
       event.preventDefault();
       this.onSend();
     }
