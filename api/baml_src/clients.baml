@@ -40,13 +40,24 @@ client<llm> CustomSonnet45 {
   }
 }
 
-client<llm> AzureOpenAI {
+// Claude Haiku 4.5 - Fastest and cheapest Anthropic model ($1/$5 per MTok)
+client<llm> CustomHaiku45 {
+  provider anthropic
+  options {
+    model "claude-haiku-4-5-20251001"
+    api_key env.ANTHROPIC_API_KEY
+    max_tokens 8000
+  }
+}
+
+client<llm> GPT41 {
   provider azure-openai
   options {
-    base_url env.AZURE_OPENAI_BASE_URL
+    base_url env.AZURE_OPENAI_BASE_URL_GPT41
     api_version env.AZURE_OPENAI_API_VERSION
-    api_key env.AZURE_OPENAI_API_KEY
-    max_tokens null
+    api_key env.AZURE_OPENAI_KEY
+    temperature 0.0
+    max_tokens 32768
   }
 }
 
@@ -69,7 +80,7 @@ client<llm> OpenaiFallback {
   provider fallback
   options {
     // This will try the clients in order until one succeeds
-    strategy [AzureOpenAI, CustomGPT5]
+    strategy [GPT41, CustomGPT5]
   }
 }
 

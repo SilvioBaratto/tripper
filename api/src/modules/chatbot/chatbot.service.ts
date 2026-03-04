@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { QdrantService, SearchResult } from '../qdrant/qdrant.service';
+import { ItineraryService } from '../itinerary/itinerary.service';
 import { ChatRequestDto, RichChatResponseDto, StreamChunkDto } from './dto/chat.dto';
 
 function toRetrievedChunks(results: SearchResult[]) {
@@ -30,22 +31,26 @@ const EMPTY_RICH: RichChatResponseDto = {
 export class ChatbotService {
   private readonly logger = new Logger(ChatbotService.name);
 
-  constructor(private readonly qdrantService: QdrantService) {}
+  constructor(
+    private readonly qdrantService: QdrantService,
+    private readonly itineraryService: ItineraryService,
+  ) {}
 
-  async chat(request: ChatRequestDto): Promise<RichChatResponseDto> {
+  async chat(request: ChatRequestDto, userId?: string): Promise<RichChatResponseDto> {
     try {
       const { b } = await import('../../../baml_client');
 
-      const searchResults = await this.qdrantService.search(
-        request.user_question,
-        5,
-      );
+      const [searchResults, tripContext] = await Promise.all([
+        this.qdrantService.search(request.user_question, 5),
+        userId ? this.getUserTripContext(userId) : Promise.resolve(null),
+      ]);
       const contextChunks = toRetrievedChunks(searchResults);
 
       const result = await b.RAGChat(
         request.user_question,
         contextChunks,
         request.conversation_history,
+        tripContext,
       );
 
       return {
@@ -67,20 +72,22 @@ export class ChatbotService {
 
   async *streamChat(
     request: ChatRequestDto,
+    userId?: string,
   ): AsyncGenerator<StreamChunkDto> {
     try {
       const { b } = await import('../../../baml_client');
 
-      const searchResults = await this.qdrantService.search(
-        request.user_question,
-        5,
-      );
+      const [searchResults, tripContext] = await Promise.all([
+        this.qdrantService.search(request.user_question, 5),
+        userId ? this.getUserTripContext(userId) : Promise.resolve(null),
+      ]);
       const contextChunks = toRetrievedChunks(searchResults);
 
       const stream = b.stream.StreamRAGChat(
         request.user_question,
         contextChunks,
         request.conversation_history,
+        tripContext,
       );
 
       for await (const event of stream) {
@@ -121,5 +128,69 @@ export class ChatbotService {
         done: true,
       };
     }
+  }
+
+  private async getUserTripContext(userId: string): Promise<string | null> {
+    try {
+      const trip = await this.itineraryService.getMostRecentTrip(userId);
+      if (!trip) return null;
+      return this.formatTripContext(trip);
+    } catch (error) {
+      this.logger.warn(`Failed to fetch trip context for user ${userId}: ${error}`);
+      return null;
+    }
+  }
+
+  private formatTripContext(trip: any): string {
+    const lines: string[] = [];
+    lines.push(`**Viaggio:** ${trip.title}`);
+    lines.push(`**Città:** ${trip.city}`);
+    lines.push(`**Date:** ${trip.startDate} – ${trip.endDate}`);
+    lines.push('');
+
+    for (const day of trip.days) {
+      lines.push(`### Giorno ${day.dayNumber}: ${day.title}`);
+      if (day.theme) lines.push(`*Tema: ${day.theme}*`);
+
+      for (const activity of day.activities) {
+        const time = activity.startTime
+          ? activity.endTime
+            ? `${activity.startTime}–${activity.endTime}`
+            : activity.startTime
+          : '';
+        const price =
+          activity.priceMinCents != null || activity.priceMaxCents != null
+            ? ` | Prezzo: €${((activity.priceMinCents ?? activity.priceMaxCents ?? 0) / 100).toFixed(0)}`
+            : '';
+        const place = activity.place
+          ? ` | Luogo: ${activity.place.name}${activity.place.address ? `, ${activity.place.address}` : ''}`
+          : '';
+
+        lines.push(`- [${activity.activityType}] ${time ? time + ' ' : ''}**${activity.title}**${place}${price}`);
+        if (activity.description) lines.push(`  ${activity.description}`);
+        if (activity.highlights?.length) {
+          lines.push(`  Punti salienti: ${activity.highlights.map((h: any) => h.description).join(', ')}`);
+        }
+      }
+      lines.push('');
+    }
+
+    if (trip.bookings?.length) {
+      lines.push('### Prenotazioni');
+      for (const b of trip.bookings) {
+        const price = b.priceCents != null ? ` – €${(b.priceCents / 100).toFixed(0)}` : '';
+        lines.push(`- ${b.attractionName}${price}${b.bookingUrl ? ` (${b.bookingUrl})` : ''}`);
+      }
+      lines.push('');
+    }
+
+    if (trip.tips?.length) {
+      lines.push('### Consigli di viaggio');
+      for (const tip of trip.tips) {
+        lines.push(`- [${tip.category}] ${tip.content}`);
+      }
+    }
+
+    return lines.join('\n');
   }
 }

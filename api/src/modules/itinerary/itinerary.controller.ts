@@ -1,6 +1,12 @@
 import {
   Controller,
+  Get,
   Post,
+  Patch,
+  Put,
+  Delete,
+  Param,
+  Body,
   UseInterceptors,
   UploadedFile,
   BadRequestException,
@@ -13,6 +19,13 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiTags, ApiOperation, ApiConsumes, ApiBody, ApiBearerAuth } from '@nestjs/swagger';
 import { ItineraryService } from './itinerary.service';
 import { TripResponseDto } from './dto/upload-itinerary.dto';
+import {
+  UpdateTripDto,
+  UpdateTripDayDto,
+  UpdateActivityDto,
+  CreateActivityDto,
+  ReorderActivitiesDto,
+} from './dto/update-itinerary.dto';
 import { Public } from '../../common/decorators/public.decorator';
 
 @ApiTags('Itinerary')
@@ -22,6 +35,23 @@ export class ItineraryController {
   private readonly logger = new Logger(ItineraryController.name);
 
   constructor(private readonly itineraryService: ItineraryService) {}
+
+  @Get()
+  @ApiOperation({ summary: 'List all trips for the authenticated user' })
+  async getTrips(@Request() req: any) {
+    const userId = req.user.id;
+    return this.itineraryService.getTripsForUser(userId);
+  }
+
+  @Get(':id')
+  @ApiOperation({ summary: 'Get a single trip by ID with all nested data' })
+  async getTripById(
+    @Param('id') id: string,
+    @Request() req: any,
+  ) {
+    const userId = req.user.id;
+    return this.itineraryService.getTripById(id, userId);
+  }
 
   @Public() // TODO: remove after testing
   @Post('upload')
@@ -74,5 +104,82 @@ export class ItineraryController {
     const trip = await this.itineraryService.uploadPdfAndExtract(file.buffer, userId);
 
     return trip as TripResponseDto;
+  }
+
+  @Patch(':id')
+  @ApiOperation({ summary: 'Update trip title/city' })
+  async updateTrip(
+    @Param('id') id: string,
+    @Body() body: UpdateTripDto,
+    @Request() req: any,
+  ) {
+    return this.itineraryService.updateTrip(id, body, req.user.id);
+  }
+
+  @Patch(':tripId/days/:dayId')
+  @ApiOperation({ summary: 'Update a trip day' })
+  async updateTripDay(
+    @Param('tripId') tripId: string,
+    @Param('dayId') dayId: string,
+    @Body() body: UpdateTripDayDto,
+    @Request() req: any,
+  ) {
+    return this.itineraryService.updateTripDay(tripId, dayId, body, req.user.id);
+  }
+
+  @Patch(':tripId/activities/:activityId')
+  @ApiOperation({ summary: 'Update an activity' })
+  async updateActivity(
+    @Param('tripId') tripId: string,
+    @Param('activityId') activityId: string,
+    @Body() body: UpdateActivityDto,
+    @Request() req: any,
+  ) {
+    return this.itineraryService.updateActivity(tripId, activityId, body, req.user.id);
+  }
+
+  @Post(':tripId/days/:dayId/activities')
+  @HttpCode(HttpStatus.CREATED)
+  @ApiOperation({ summary: 'Create a new activity in a day' })
+  async createActivity(
+    @Param('tripId') tripId: string,
+    @Param('dayId') dayId: string,
+    @Body() body: CreateActivityDto,
+    @Request() req: any,
+  ) {
+    return this.itineraryService.createActivity(tripId, dayId, body, req.user.id);
+  }
+
+  @Delete(':tripId/activities/:activityId')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  @ApiOperation({ summary: 'Delete an activity' })
+  async deleteActivity(
+    @Param('tripId') tripId: string,
+    @Param('activityId') activityId: string,
+    @Request() req: any,
+  ) {
+    await this.itineraryService.deleteActivity(tripId, activityId, req.user.id);
+  }
+
+  @Put(':tripId/days/:dayId/reorder')
+  @ApiOperation({ summary: 'Reorder activities in a day' })
+  async reorderActivities(
+    @Param('tripId') tripId: string,
+    @Param('dayId') dayId: string,
+    @Body() body: ReorderActivitiesDto,
+    @Request() req: any,
+  ) {
+    await this.itineraryService.reorderActivities(tripId, dayId, body.activityIds, req.user.id);
+  }
+
+  @Delete(':tripId/days/:dayId')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  @ApiOperation({ summary: 'Delete a day from a trip' })
+  async deleteDay(
+    @Param('tripId') tripId: string,
+    @Param('dayId') dayId: string,
+    @Request() req: any,
+  ) {
+    await this.itineraryService.deleteDay(tripId, dayId, req.user.id);
   }
 }

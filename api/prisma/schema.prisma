@@ -65,6 +65,7 @@ model Trip {
   city      String   @db.VarChar(255)
   startDate DateTime @map("start_date") @db.Date
   endDate   DateTime @map("end_date") @db.Date
+  isShared  Boolean  @default(false) @map("is_shared")
 
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz

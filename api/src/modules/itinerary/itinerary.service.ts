@@ -1,6 +1,7 @@
-import { Injectable, Logger, BadRequestException } from '@nestjs/common';
+import { Injectable, Logger, BadRequestException, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
 import { ActivityType, PlaceType, TipCategory } from '@generated/prisma';
+import { UpdateTripDto, UpdateTripDayDto, UpdateActivityDto, CreateActivityDto } from './dto/update-itinerary.dto';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const pdfParse = require('pdf-parse');
 
@@ -57,6 +58,62 @@ export class ItineraryService {
 
   constructor(private readonly prisma: PrismaService) {}
 
+  async getTripsForUser(userId: string) {
+    return this.prisma.trip.findMany({
+      where: {
+        OR: [
+          { userId },
+          { isShared: true },
+        ],
+      },
+      orderBy: { createdAt: 'desc' },
+      include: {
+        _count: { select: { days: true } },
+      },
+    });
+  }
+
+  async getTripById(tripId: string, userId: string) {
+    const trip = await this.prisma.trip.findUnique({
+      where: { id: tripId },
+      include: {
+        days: {
+          orderBy: { dayNumber: 'asc' },
+          include: {
+            activities: {
+              orderBy: { sortOrder: 'asc' },
+              include: {
+                place: true,
+                highlights: { orderBy: { sortOrder: 'asc' } },
+                alternatives: {
+                  include: {
+                    place: true,
+                    highlights: { orderBy: { sortOrder: 'asc' } },
+                  },
+                },
+              },
+            },
+          },
+        },
+        bookings: { include: { place: true } },
+        tips: true,
+      },
+    });
+
+    if (!trip) {
+      throw new NotFoundException(`Trip ${tripId} not found`);
+    }
+
+    const isOwner = trip.userId === userId;
+    const isShared = trip.isShared;
+
+    if (!isOwner && !isShared) {
+      throw new NotFoundException(`Trip ${tripId} not found`);
+    }
+
+    return trip;
+  }
+
   async uploadPdfAndExtract(pdfBuffer: Buffer, userId: string) {
     this.logger.log(`Extracting itinerary from PDF (${pdfBuffer.length} bytes) for user ${userId}`);
 
@@ -73,6 +130,187 @@ export class ItineraryService {
     this.logger.log(`Successfully created trip ${trip.id} with ${trip.days.length} days`);
     return trip;
   }
+
+  // ── CRUD helpers ──────────────────────────────────────────────────
+
+  private async assertTripAccess(tripId: string, userId: string) {
+    const trip = await this.prisma.trip.findUnique({
+      where: { id: tripId },
+      select: { userId: true, isShared: true },
+    });
+    if (!trip || (trip.userId !== userId && !trip.isShared)) {
+      throw new NotFoundException(`Trip ${tripId} not found`);
+    }
+    return trip;
+  }
+
+  async updateTrip(tripId: string, data: UpdateTripDto, userId: string) {
+    await this.assertTripAccess(tripId, userId);
+    return this.prisma.trip.update({
+      where: { id: tripId },
+      data,
+    });
+  }
+
+  async updateTripDay(tripId: string, dayId: string, data: UpdateTripDayDto, userId: string) {
+    await this.assertTripAccess(tripId, userId);
+    const day = await this.prisma.tripDay.findUnique({
+      where: { id: dayId },
+      select: { tripId: true },
+    });
+    if (!day || day.tripId !== tripId) {
+      throw new NotFoundException(`Day ${dayId} not found in trip ${tripId}`);
+    }
+    return this.prisma.tripDay.update({
+      where: { id: dayId },
+      data,
+    });
+  }
+
+  async updateActivity(tripId: string, activityId: string, data: UpdateActivityDto, userId: string) {
+    await this.assertTripAccess(tripId, userId);
+    const activity = await this.prisma.activity.findUnique({
+      where: { id: activityId },
+      include: { tripDay: { select: { tripId: true } } },
+    });
+    if (!activity || activity.tripDay.tripId !== tripId) {
+      throw new NotFoundException(`Activity ${activityId} not found in trip ${tripId}`);
+    }
+
+    const updateData: any = { ...data };
+    if (data.activityType) {
+      updateData.activityType = this.mapActivityType(data.activityType);
+    }
+    // Recalculate duration if times changed
+    const startTime = data.startTime !== undefined ? data.startTime : activity.startTime;
+    const endTime = data.endTime !== undefined ? data.endTime : activity.endTime;
+    updateData.durationMinutes = this.calculateDuration(startTime ?? undefined, endTime ?? undefined);
+
+    return this.prisma.activity.update({
+      where: { id: activityId },
+      data: updateData,
+      include: { place: true, highlights: { orderBy: { sortOrder: 'asc' } } },
+    });
+  }
+
+  async createActivity(tripId: string, dayId: string, data: CreateActivityDto, userId: string) {
+    await this.assertTripAccess(tripId, userId);
+    const day = await this.prisma.tripDay.findUnique({
+      where: { id: dayId },
+      select: { tripId: true },
+    });
+    if (!day || day.tripId !== tripId) {
+      throw new NotFoundException(`Day ${dayId} not found in trip ${tripId}`);
+    }
+
+    // If no sortOrder given, put it at the end
+    let sortOrder = data.sortOrder;
+    if (!sortOrder) {
+      const last = await this.prisma.activity.findFirst({
+        where: { tripDayId: dayId },
+        orderBy: { sortOrder: 'desc' },
+        select: { sortOrder: true },
+      });
+      sortOrder = (last?.sortOrder ?? 0) + 1;
+    }
+
+    return this.prisma.activity.create({
+      data: {
+        tripDayId: dayId,
+        sortOrder,
+        title: data.title,
+        description: data.description ?? null,
+        startTime: data.startTime ?? null,
+        endTime: data.endTime ?? null,
+        durationMinutes: this.calculateDuration(data.startTime ?? undefined, data.endTime ?? undefined),
+        activityType: this.mapActivityType(data.activityType),
+      },
+      include: { place: true, highlights: { orderBy: { sortOrder: 'asc' } } },
+    });
+  }
+
+  async deleteActivity(tripId: string, activityId: string, userId: string) {
+    await this.assertTripAccess(tripId, userId);
+    const activity = await this.prisma.activity.findUnique({
+      where: { id: activityId },
+      include: { tripDay: { select: { tripId: true } } },
+    });
+    if (!activity || activity.tripDay.tripId !== tripId) {
+      throw new NotFoundException(`Activity ${activityId} not found in trip ${tripId}`);
+    }
+    await this.prisma.activity.delete({ where: { id: activityId } });
+  }
+
+  async reorderActivities(tripId: string, dayId: string, activityIds: string[], userId: string) {
+    await this.assertTripAccess(tripId, userId);
+    const day = await this.prisma.tripDay.findUnique({
+      where: { id: dayId },
+      select: { tripId: true },
+    });
+    if (!day || day.tripId !== tripId) {
+      throw new NotFoundException(`Day ${dayId} not found in trip ${tripId}`);
+    }
+
+    // First clear all sortOrders to avoid unique constraint violations
+    await this.prisma.$transaction(async (tx) => {
+      // Temporarily set negative sortOrders
+      for (let i = 0; i < activityIds.length; i++) {
+        await tx.activity.update({
+          where: { id: activityIds[i] },
+          data: { sortOrder: -(i + 1) },
+        });
+      }
+      // Then set final positive values
+      for (let i = 0; i < activityIds.length; i++) {
+        await tx.activity.update({
+          where: { id: activityIds[i] },
+          data: { sortOrder: i + 1 },
+        });
+      }
+    });
+  }
+
+  async deleteDay(tripId: string, dayId: string, userId: string) {
+    await this.assertTripAccess(tripId, userId);
+    const day = await this.prisma.tripDay.findUnique({
+      where: { id: dayId },
+      select: { tripId: true },
+    });
+    if (!day || day.tripId !== tripId) {
+      throw new NotFoundException(`Day ${dayId} not found in trip ${tripId}`);
+    }
+    await this.prisma.tripDay.delete({ where: { id: dayId } });
+  }
+
+  async getMostRecentTrip(userId: string) {
+    return this.prisma.trip.findFirst({
+      where: {
+        OR: [
+          { userId },
+          { isShared: true },
+        ],
+      },
+      orderBy: { createdAt: 'desc' },
+      include: {
+        days: {
+          orderBy: { dayNumber: 'asc' },
+          include: {
+            activities: {
+              orderBy: { sortOrder: 'asc' },
+              include: {
+                place: true,
+                highlights: { orderBy: { sortOrder: 'asc' } },
+              },
+            },
+          },
+        },
+        bookings: { include: { place: true } },
+        tips: true,
+      },
+    });
+  }
+
+  // ── PDF extraction ──────────────────────────────────────────────
 
   private async extractItineraryFromPdf(pdfBuffer: Buffer): Promise<ParsedItinerary> {
     try {

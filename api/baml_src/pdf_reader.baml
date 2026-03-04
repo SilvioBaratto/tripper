@@ -48,7 +48,7 @@ class ParsedItinerary {
 }
 
 function ExtractItinerary(itinerary_text: string) -> ParsedItinerary {
-  client AzureOpenAI
+  client CustomHaiku45
   prompt #"
     You are a travel itinerary parser. Extract ALL structured data from this travel itinerary text.
 

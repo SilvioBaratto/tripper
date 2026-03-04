@@ -64,9 +64,10 @@ class RichChatResponse {
 function RAGChat(
   user_question: string,
   context_chunks: RetrievedChunk[],
-  conversation_history: ConversationHistory?
+  conversation_history: ConversationHistory?,
+  trip_context: string?
 ) -> RichChatResponse {
-  client AzureOpenAI
+  client CustomHaiku45
 
   prompt #"
     {{ _.role("system") }}
@@ -82,6 +83,8 @@ function RAGChat(
     7. NON inventare URL, immagini o indirizzi che non siano presenti nel contesto.
     8. Se non ci sono chunk di contesto rilevanti, rispondi con le tue conoscenze generali in italiano, lasciando vuoti i campi images, links, map_links, tables e sources.
     9. Il campo "text" deve contenere la risposta principale in markdown italiano.
+    10. Quando l'utente chiede del suo piano, programma, prenotazioni o attività, usa i dati dell'itinerario personale forniti qui sotto.
+    11. Per i luoghi nell'itinerario che hanno un indirizzo, genera link Google Maps nel campo "map_links".
 
     {% if context_chunks %}
     ## Contesto recuperato dalla Knowledge Base di Madrid:
@@ -98,6 +101,11 @@ function RAGChat(
     {% if chunk.prices %}**Prezzi:** {{ chunk.prices }}{% endif %}
     {% endfor %}
     ---
+    {% endif %}
+
+    {% if trip_context %}
+    ## Il tuo itinerario personale:
+    {{ trip_context }}
     {% endif %}
 
     {% if conversation_history %}
@@ -118,9 +126,10 @@ function RAGChat(
 function StreamRAGChat(
   user_question: string,
   context_chunks: RetrievedChunk[],
-  conversation_history: ConversationHistory?
+  conversation_history: ConversationHistory?,
+  trip_context: string?
 ) -> RichChatResponse {
-  client AzureOpenAI
+  client CustomHaiku45
 
   prompt #"
     {{ _.role("system") }}
@@ -136,6 +145,8 @@ function StreamRAGChat(
     7. NON inventare URL, immagini o indirizzi che non siano presenti nel contesto.
     8. Se non ci sono chunk di contesto rilevanti, rispondi con le tue conoscenze generali in italiano, lasciando vuoti i campi images, links, map_links, tables e sources.
     9. Il campo "text" deve contenere la risposta principale in markdown italiano.
+    10. Quando l'utente chiede del suo piano, programma, prenotazioni o attività, usa i dati dell'itinerario personale forniti qui sotto.
+    11. Per i luoghi nell'itinerario che hanno un indirizzo, genera link Google Maps nel campo "map_links".
 
     {% if context_chunks %}
     ## Contesto recuperato dalla Knowledge Base di Madrid:
@@ -152,6 +163,11 @@ function StreamRAGChat(
     {% if chunk.prices %}**Prezzi:** {{ chunk.prices }}{% endif %}
     {% endfor %}
     ---
+    {% endif %}
+
+    {% if trip_context %}
+    ## Il tuo itinerario personale:
+    {{ trip_context }}
     {% endif %}
 
     {% if conversation_history %}

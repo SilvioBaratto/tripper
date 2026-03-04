@@ -1,26 +1,39 @@
+/**
+ * Vercel serverless entry point.
+ *
+ * NestJS is bootstrapped once per cold start and the underlying Express
+ * instance is reused across invocations within the same function container.
+ * This avoids repeated bootstrap overhead and keeps Prisma connections alive
+ * between warm requests.
+ */
 import { NestFactory, HttpAdapterHost } from '@nestjs/core';
 import { Logger } from '@nestjs/common';
+import { ExpressAdapter } from '@nestjs/platform-express';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { cleanupOpenApiDoc } from 'nestjs-zod';
 import helmet from 'helmet';
+import * as express from 'express';
+import { Express } from 'express';
 import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { PrismaClientExceptionFilter } from './common/filters/prisma-exception.filter';
 import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 
-// Version is inlined at build time via the npm_package_version env var that
-// Node sets automatically, with a fallback so serverless cold starts without
-// the env var still produce a sensible value.
-const version: string = process.env.npm_package_version ?? '1.0.0';
+const APP_VERSION = process.env.npm_package_version ?? '1.0.0';
 
-async function bootstrap() {
-  const logger = new Logger('Bootstrap');
-  const app = await NestFactory.create(AppModule);
+let cachedApp: Express | null = null;
 
-  // Enable graceful shutdown hooks (for Prisma disconnect)
+async function createExpressApp(): Promise<Express> {
+  const logger = new Logger('ServerlessBootstrap');
+  const expressInstance = express();
+  const adapter = new ExpressAdapter(expressInstance);
+
+  const app = await NestFactory.create(AppModule, adapter, {
+    logger: ['error', 'warn', 'log'],
+  });
+
   app.enableShutdownHooks();
 
-  // Security — relax CSP for Swagger UI assets
   app.use(
     helmet({
       contentSecurityPolicy: {
@@ -34,11 +47,12 @@ async function bootstrap() {
     }),
   );
 
-  // CORS
-  const corsOrigins = process.env.CORS_ORIGINS?.split(',').map((o) => o.trim()) || [
-    'http://localhost:4200',
-    'http://localhost:4300',
-  ];
+  const corsOrigins =
+    process.env.CORS_ORIGINS?.split(',').map((o) => o.trim()) ?? [
+      'http://localhost:4200',
+      'http://localhost:4300',
+    ];
+
   app.enableCors({
     origin: corsOrigins,
     credentials: true,
@@ -57,50 +71,51 @@ async function bootstrap() {
     maxAge: 3600,
   });
 
-  // Global prefix (exclude Swagger docs)
   app.setGlobalPrefix('api/v1', {
     exclude: ['docs', 'docs/(.*)'],
   });
 
-  // Global filters (ZodValidationPipe is registered in AppModule)
   const { httpAdapter } = app.get(HttpAdapterHost);
   app.useGlobalFilters(
     new HttpExceptionFilter(),
     new PrismaClientExceptionFilter(httpAdapter),
   );
 
-  // Global interceptors
   app.useGlobalInterceptors(new TransformInterceptor());
 
-  // Swagger documentation
-  const config = new DocumentBuilder()
-    .setTitle('NestJS API Template')
-    .setDescription('Modern API')
-    .setVersion(version)
+  const swaggerConfig = new DocumentBuilder()
+    .setTitle('Tripper API')
+    .setDescription('Modern travel itinerary API')
+    .setVersion(APP_VERSION)
     .addBearerAuth()
     .build();
-  const document = SwaggerModule.createDocument(app, config);
+  const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('docs', app, cleanupOpenApiDoc(document));
 
-  // Health endpoint at root (outside /api/v1 prefix)
-  const expressApp = app.getHttpAdapter().getInstance();
-  expressApp.get('/', (_req: any, res: any) => {
+  const expressApp = app.getHttpAdapter().getInstance() as Express;
+  expressApp.get('/', (_req, res) => {
     res.json({
-      message: 'Welcome to the NestJS API Template!',
-      version,
+      message: 'Welcome to the Tripper API!',
+      version: APP_VERSION,
       status: 'operational',
-      environment: process.env.NODE_ENV || 'development',
+      environment: process.env.NODE_ENV ?? 'production',
       api_version: 'v1',
       docs_url: '/docs',
     });
   });
-  expressApp.get('/health', (_req: any, res: any) => {
+  expressApp.get('/health', (_req, res) => {
     res.json({ status: 'ok' });
   });
 
-  const port = process.env.PORT || 3000;
-  await app.listen(port);
-  logger.log(`Application is running on: http://localhost:${port}`);
-  logger.log(`Swagger docs: http://localhost:${port}/docs`);
+  await app.init();
+
+  logger.log('NestJS application initialised for serverless runtime');
+  return expressInstance;
 }
-bootstrap();
+
+export async function getApp(): Promise<Express> {
+  if (!cachedApp) {
+    cachedApp = await createExpressApp();
+  }
+  return cachedApp;
+}
