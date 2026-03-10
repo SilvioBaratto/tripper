@@ -23,24 +23,13 @@ class PageChunkingResult {
   chunks Chunk[]
 }
 
-client<llm> ChunkingClient {
-  provider azure-openai
-  retry_policy Exponential
-  options {
-    base_url env.AZURE_OPENAI_BASE_URL
-    api_version env.AZURE_OPENAI_API_VERSION
-    api_key env.AZURE_OPENAI_API_KEY
-    max_tokens null
-  }
-}
-
 function ChunkPage(
   page_title: string,
   category: string,
   source_url: string,
   markdown_content: string
 ) -> PageChunkingResult {
-  client ChunkingClient
+  client GPT52
 
   prompt #"
     {{ _.role("system") }}

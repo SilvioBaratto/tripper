@@ -1,10 +1,18 @@
 // Learn more about clients at https://docs.boundaryml.com/docs/snippets/clients/overview
 
 // Using the new OpenAI Responses API for enhanced formatting
-client<llm> CustomGPT5 {
+client<llm> GPT52 {
   provider openai
   options {
     model "gpt-5.2"
+    api_key env.OPENAI_API_KEY
+  }
+}
+
+client<llm> GPT5Mini{
+  provider openai
+  options {
+    model "gpt-5-mini"
     api_key env.OPENAI_API_KEY
   }
 }
@@ -50,17 +58,6 @@ client<llm> CustomHaiku45 {
   }
 }
 
-client<llm> GPT41 {
-  provider azure-openai
-  options {
-    base_url env.AZURE_OPENAI_BASE_URL_GPT41
-    api_version env.AZURE_OPENAI_API_VERSION
-    api_key env.AZURE_OPENAI_KEY
-    temperature 0.0
-    max_tokens 32768
-  }
-}
-
 // Main Ollama client for Briscola
 // Uses OLLAMA_BASE_URL env var in Docker, defaults to localhost
 client<llm> Ollama {
@@ -80,7 +77,7 @@ client<llm> OpenaiFallback {
   provider fallback
   options {
     // This will try the clients in order until one succeeds
-    strategy [GPT41, CustomGPT5]
+    strategy [GPT5Mini, GPT52]
   }
 }
 

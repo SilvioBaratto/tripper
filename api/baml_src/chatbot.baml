@@ -67,7 +67,7 @@ function RAGChat(
   conversation_history: ConversationHistory?,
   trip_context: string?
 ) -> RichChatResponse {
-  client CustomHaiku45
+  client GPT5Mini
 
   prompt #"
     {{ _.role("system") }}
