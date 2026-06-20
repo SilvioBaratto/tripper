@@ -2,7 +2,7 @@
 
 An AI-powered travel planning application. Build personalized itineraries, chat with a context-aware assistant, and manage your trip details -- all in one place.
 
-**Live:** [tripper.silviobaratto.com](https://tripper.silviobaratto.com)
+> Runs locally via Docker Compose -- no hosted deployment.
 
 ## Features
 
@@ -19,7 +19,7 @@ An AI-powered travel planning application. Build personalized itineraries, chat 
 | Database | PostgreSQL (local Docker or Supabase) |
 | Vector Search | Qdrant |
 | AI/LLM | BAML (Azure OpenAI), Azure `text-embedding-3-large` (3072-dim) embeddings |
-| Infrastructure | Docker, Vercel, GitHub Actions CI/CD |
+| Infrastructure | Docker Compose (local) |
 
 ## Getting Started
 
@@ -169,15 +169,6 @@ ng test                        # Unit tests (Karma)
 npx playwright test            # E2E tests (desktop + mobile)
 ng build --configuration=production
 ```
-
-## Deployment
-
-The application deploys to **Vercel** via GitHub Actions. Pushes to `main` trigger automatic deployments for both the API and frontend.
-
-| Project | Trigger |
-|---------|---------|
-| API | Changes in `api/` |
-| Frontend | Changes in `frontend/` |
 
 ## License
 
