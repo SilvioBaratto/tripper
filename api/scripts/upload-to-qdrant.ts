@@ -14,14 +14,33 @@ dotenv.config({ path: join(__dirname, '..', '.env') });
 // Config
 // ---------------------------------------------------------------------------
 const ROOT = join(__dirname, '..', '..');
-const ALL_CHUNKS_PATH = join(ROOT, 'kb', 'chunked', 'all-chunks.json');
+const ALL_CHUNKS_PATH = join(ROOT, 'kb', 'all-chunks.json');
 
-const COLLECTION_NAME = 'madrid-kb';
-const EMBEDDING_MODEL = 'text-embedding-ada-002';
-const VECTOR_SIZE = 1536;
-const EMBED_BATCH_SIZE = 50; // OpenAI allows up to 2048 inputs per request
+const COLLECTION_NAME = process.env.QDRANT_COLLECTION_NAME ?? 'tripper-kb';
+const EMBEDDING_MODEL =
+  process.env.AZURE_OPENAI_EMBEDDINGS_MODEL ?? 'text-embedding-3-large';
+const VECTOR_SIZE = parseInt(
+  process.env.AZURE_OPENAI_EMBEDDINGS_DIM ?? '3072',
+  10,
+);
+const EMBED_BATCH_SIZE = 50; // Azure OpenAI allows large batches per request
 const UPSERT_BATCH_SIZE = 100;
 const EMBED_DELAY_MS = 500;
+
+/** Build the Azure OpenAI embeddings endpoint URL from env vars. */
+function getAzureEmbedUrl(): string {
+  const endpoint = (
+    process.env.AZURE_OPENAI_EMBEDDINGS_ENDPOINT ?? ''
+  ).replace(/\/+$/, '');
+  const deployment = process.env.AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT ?? '';
+  const apiVersion = process.env.AZURE_OPENAI_EMBEDDINGS_API_VERSION ?? '';
+  if (!endpoint || !deployment || !apiVersion) {
+    throw new Error(
+      'Azure embeddings config missing: set AZURE_OPENAI_EMBEDDINGS_ENDPOINT, AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT, AZURE_OPENAI_EMBEDDINGS_API_VERSION',
+    );
+  }
+  return `${endpoint}/openai/deployments/${deployment}/embeddings?api-version=${apiVersion}`;
+}
 
 // ---------------------------------------------------------------------------
 // Types
@@ -81,24 +100,23 @@ function chunkIdToUuid(chunkId: string): string {
 // OpenAI Embeddings via fetch
 // ---------------------------------------------------------------------------
 async function embedTexts(texts: string[]): Promise<number[][]> {
-  const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) throw new Error('OPENAI_API_KEY is not set');
+  const apiKey = process.env.AZURE_OPENAI_EMBEDDINGS_API_KEY;
+  if (!apiKey) throw new Error('AZURE_OPENAI_EMBEDDINGS_API_KEY is not set');
 
-  const res = await fetch('https://api.openai.com/v1/embeddings', {
+  const res = await fetch(getAzureEmbedUrl(), {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${apiKey}`,
+      'api-key': apiKey,
     },
     body: JSON.stringify({
-      model: EMBEDDING_MODEL,
       input: texts,
     }),
   });
 
   if (!res.ok) {
     const body = await res.text().catch(() => '');
-    throw new Error(`OpenAI embeddings failed (HTTP ${res.status}): ${body.slice(0, 500)}`);
+    throw new Error(`Azure OpenAI embeddings failed (HTTP ${res.status}): ${body.slice(0, 500)}`);
   }
 
   const json = (await res.json()) as {
@@ -117,10 +135,12 @@ async function embedTexts(texts: string[]): Promise<number[][]> {
 async function main(): Promise<void> {
   // Validate env
   const qdrantUrl = process.env.QDRANT_URL;
-  const qdrantApiKey = process.env.QDRANT_API_KEY;
+  // Local Qdrant (docker) has no auth — apiKey may be empty/undefined.
+  const qdrantApiKey = process.env.QDRANT_API_KEY || undefined;
   if (!qdrantUrl) throw new Error('QDRANT_URL is not set');
-  if (!qdrantApiKey) throw new Error('QDRANT_API_KEY is not set');
-  if (!process.env.OPENAI_API_KEY) throw new Error('OPENAI_API_KEY is not set');
+  if (!process.env.AZURE_OPENAI_EMBEDDINGS_API_KEY) {
+    throw new Error('AZURE_OPENAI_EMBEDDINGS_API_KEY is not set');
+  }
 
   // Load chunks
   console.log(`Loading chunks from ${ALL_CHUNKS_PATH}...`);

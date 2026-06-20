@@ -20,15 +20,21 @@ async function bootstrap() {
   // Enable graceful shutdown hooks (for Prisma disconnect)
   app.enableShutdownHooks();
 
-  // Security — relax CSP for Swagger UI assets
+  // Security — relax CSP for Swagger UI assets.
+  // HSTS + upgrade-insecure-requests are disabled because the app is reached
+  // over plain HTTP on a LAN/Tailscale IP (no TLS on :4200). Leaving them on
+  // makes browsers force https:// on every request → connection failures on
+  // iOS Safari. Re-enable both behind a real HTTPS terminator in production.
   app.use(
     helmet({
+      hsts: false,
       contentSecurityPolicy: {
         directives: {
           defaultSrc: ["'self'"],
           scriptSrc: ["'self'", "'unsafe-inline'"],
           styleSrc: ["'self'", "'unsafe-inline'"],
           imgSrc: ["'self'", 'data:', 'https://cdn.jsdelivr.net'],
+          upgradeInsecureRequests: null,
         },
       },
     }),

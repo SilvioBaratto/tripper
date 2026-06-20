@@ -181,7 +181,7 @@ test.describe('Chatbot rich content', () => {
     await page.waitForURL('/', { timeout: 15_000 });
 
     // Ask a question likely to produce rich content
-    await page.getByLabel('Chat message').fill('What are the best restaurants in Madrid?');
+    await page.getByLabel('Chat message').fill('What are the best restaurants nearby?');
     await page.getByRole('button', { name: /send message/i }).click();
 
     // Wait for streaming to complete (loading indicator disappears)

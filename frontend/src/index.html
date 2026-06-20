@@ -2,14 +2,84 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>tripper — Madrid Travel Companion</title>
+  <title>tripper — Travel Companion</title>
   <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta name="theme-color" content="#c45d3e">
   <link rel="preconnect" href="https://fonts.bunny.net">
   <link href="https://fonts.bunny.net/css?family=bricolage-grotesque:400,600,800|dm-sans:400,500,600|jetbrains-mono:400" rel="stylesheet">
+  <style>
+    #tripper-splash {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      background-color: #faf8f5;
+    }
+    .dark #tripper-splash { background-color: #1A1614; }
+    #tripper-splash-wordmark {
+      font-family: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+      font-weight: 800;
+      font-size: 1.75rem;
+      letter-spacing: -0.02em;
+      color: #c45d3e;
+    }
+    .dark #tripper-splash-wordmark { color: #d4735a; }
+    #tripper-splash-ring {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 9999px;
+      border: 3px solid #f5f0eb;
+      border-top-color: #c45d3e;
+      animation: tripper-spin 0.8s linear infinite;
+    }
+    .dark #tripper-splash-ring { border-color: #2E2822; border-top-color: #d4735a; }
+    @keyframes tripper-spin { to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce) {
+      #tripper-splash-ring { animation: none; opacity: 0.5; }
+    }
+  </style>
+  <script>
+    (function(){
+      var t=localStorage.getItem('tripper-theme');
+      var d=t==='dark'||(t!=='light'&&matchMedia('(prefers-color-scheme:dark)').matches);
+      if(d)document.documentElement.classList.add('dark');
+    })();
+  </script>
+  <script>
+    // iOS Safari ignores `user-scalable=no` on the viewport meta tag,
+    // so pinch-to-zoom and double-tap-zoom both still fire by default.
+    // The only reliable way to block them on iOS is to preventDefault
+    // on the proprietary `gesturestart`/`gesturechange` events (pinch)
+    // and track double-taps manually. We also block Ctrl+wheel zoom in
+    // embedded desktop browsers for consistency.
+    (function(){
+      var stop=function(e){ e.preventDefault(); };
+      document.addEventListener('gesturestart', stop, { passive: false });
+      document.addEventListener('gesturechange', stop, { passive: false });
+      document.addEventListener('gestureend', stop, { passive: false });
+      // NOTE: no manual double-tap `touchend` preventDefault guard here — it
+      // cancels the synthetic click on buttons tapped within 300 ms of any
+      // prior touch (e.g. the chat Send button tapped right after typing),
+      // breaking taps. Double-tap zoom is already disabled via
+      // `touch-action: manipulation` (styles.css) + `user-scalable=no`.
+      // Ctrl/Cmd+wheel zoom (desktop Chrome embedded webviews)
+      document.addEventListener('wheel', function(e){
+        if (e.ctrlKey || e.metaKey) e.preventDefault();
+      }, { passive: false });
+    })();
+  </script>
 </head>
 <body class="bg-surface text-text font-sans">
-  <app-root></app-root>
+  <app-root>
+    <div id="tripper-splash" aria-hidden="true">
+      <span id="tripper-splash-wordmark">tripper</span>
+      <div id="tripper-splash-ring"></div>
+    </div>
+  </app-root>
 </body>
 </html>

@@ -68,7 +68,6 @@ export interface Trip {
   city: string;
   startDate: string;
   endDate: string;
-  isShared: boolean;
   days: TripDay[];
   bookings: Booking[];
   tips: TravelTip[];
@@ -80,6 +79,5 @@ export interface TripSummary {
   city: string;
   startDate: string;
   endDate: string;
-  isShared: boolean;
   _count?: { days: number };
 }

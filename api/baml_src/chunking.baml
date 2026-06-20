@@ -29,11 +29,11 @@ function ChunkPage(
   source_url: string,
   markdown_content: string
 ) -> PageChunkingResult {
-  client GPT52
+  client AzureFoundry
 
   prompt #"
     {{ _.role("system") }}
-    You are a professional content editor and translator specializing in Italian travel guides about Madrid.
+    You are a professional content editor and translator specializing in Italian travel guides.
 
     Your task is to process a scraped markdown page and produce structured, semantically coherent chunks in Italian, optimized for vector search (RAG).
 

@@ -1,15 +1,14 @@
-# Tripper - Madrid Travel Planner
+# Tripper - Travel Planner
 
-An AI-powered travel planning application for Madrid. Build personalized itineraries, chat with a context-aware assistant, and manage your trip details -- all in one place.
+An AI-powered travel planning application. Build personalized itineraries, chat with a context-aware assistant, and manage your trip details -- all in one place.
 
-**Live:** [madrid.silviobaratto.com](https://madrid.silviobaratto.com)
+**Live:** [tripper.silviobaratto.com](https://tripper.silviobaratto.com)
 
 ## Features
 
-- **AI Chatbot** -- RAG-powered assistant with knowledge of Madrid restaurants, museums, neighborhoods, and more. Streams responses in real time via SSE.
-- **Itinerary Management** -- Full CRUD for trips, days, and activities. Inline editing, drag-and-drop ordering, and PDF import via LLM extraction.
-- **Authentication** -- Supabase Auth with JWT validation, route guards, and automatic token refresh.
-- **Mobile-First** -- Responsive design tested on desktop and mobile viewports.
+- **AI Chatbot** -- RAG-powered assistant with knowledge of restaurants, museums, neighborhoods, and more. Streams responses in real time via SSE.
+- **Itinerary Management** -- Full CRUD for trips, days, and activities. Inline editing and PDF import via LLM extraction.
+- **Mobile-First** -- Responsive design (shared mobile top bar + bottom tab bar) tested on desktop and mobile viewports.
 
 ## Tech Stack
 
@@ -17,9 +16,9 @@ An AI-powered travel planning application for Madrid. Build personalized itinera
 |-------|------------|
 | Backend | NestJS 11, Prisma ORM, Zod validation |
 | Frontend | Angular 21, Signals, Tailwind CSS 4 |
-| Database | Supabase (PostgreSQL) |
+| Database | PostgreSQL (local Docker or Supabase) |
 | Vector Search | Qdrant |
-| AI/LLM | BAML (Claude Haiku), OpenAI embeddings |
+| AI/LLM | BAML (Azure OpenAI), Azure `text-embedding-3-large` (3072-dim) embeddings |
 | Infrastructure | Docker, Vercel, GitHub Actions CI/CD |
 
 ## Getting Started
@@ -27,9 +26,9 @@ An AI-powered travel planning application for Madrid. Build personalized itinera
 ### Prerequisites
 
 - Node.js 20+
-- Docker & Docker Compose (optional, for containerized development)
-- A [Supabase](https://supabase.com) project
-- API keys: OpenAI, Anthropic, Qdrant
+- Docker & Docker Compose (recommended — bundles PostgreSQL + Qdrant)
+- Azure OpenAI access (chat deployment + `text-embedding-3-large` embeddings deployment)
+- A Qdrant instance (local container or Qdrant Cloud)
 
 ### Setup
 
@@ -50,14 +49,18 @@ Fill in the required values:
 
 | Variable | Description |
 |----------|-------------|
-| `DATABASE_URL` | Supabase pooled connection string |
-| `DIRECT_URL` | Supabase direct connection string |
-| `SUPABASE_URL` | Supabase project URL |
-| `SUPABASE_PUBLISHABLE_KEY` | Supabase anon/public key |
-| `OPENAI_API_KEY` | OpenAI API key (embeddings) |
-| `ANTHROPIC_API_KEY` | Anthropic API key (chat) |
+| `DATABASE_URL` | PostgreSQL connection string (pooled) |
+| `DIRECT_URL` | PostgreSQL direct connection string |
+| `AZURE_OPENAI_BASE_URL` | Azure OpenAI chat deployment base URL |
+| `AZURE_OPENAI_API_KEY` | Azure OpenAI chat API key |
+| `AZURE_OPENAI_EMBEDDINGS_ENDPOINT` | Azure embeddings endpoint (`text-embedding-3-large`) |
+| `AZURE_OPENAI_EMBEDDINGS_API_KEY` | Azure embeddings API key |
+| `AZURE_OPENAI_EMBEDDINGS_DIM` | Embedding dimensions (`3072`) |
 | `QDRANT_URL` | Qdrant instance URL |
-| `QDRANT_API_KEY` | Qdrant API key |
+| `QDRANT_API_KEY` | Qdrant API key (empty for local, no-auth Qdrant) |
+| `QDRANT_COLLECTION_NAME` | Collection name (`tripper-kb`) |
+| `QDRANT_SCORE_THRESHOLD` | Garbage floor, not a relevance gate (`0.30`) |
+| `QDRANT_SEARCH_LIMIT` | Default top-K results (`5`) |
 
 3. **Run with Docker** (recommended)
 
@@ -103,33 +106,30 @@ tripper/
 ├── api/                    # NestJS backend
 │   ├── src/
 │   │   ├── modules/        # Feature modules
-│   │   │   ├── auth/       #   Supabase JWT authentication
 │   │   │   ├── chatbot/    #   RAG pipeline + SSE streaming
 │   │   │   ├── itinerary/  #   Trip/day/activity CRUD
-│   │   │   ├── qdrant/     #   Vector similarity search
+│   │   │   ├── qdrant/     #   Vector similarity search + embeddings
 │   │   │   └── health/     #   Health check endpoint
 │   │   ├── prisma/         # Global database service
-│   │   └── common/         # Guards, filters, interceptors, decorators
+│   │   └── common/         # Filters, interceptors, logging middleware
 │   ├── prisma/             # Schema + migrations
 │   └── baml_src/           # LLM function definitions
 ├── frontend/               # Angular SPA
 │   ├── src/app/
 │   │   ├── pages/          # Chatbot, Itinerary views
-│   │   ├── services/       # Auth, Chat, Itinerary services
-│   │   ├── guards/         # Route protection
-│   │   ├── interceptors/   # JWT injection + 401 handling
-│   │   └── shared/         # Layout, sidebar, reusable components
+│   │   ├── services/       # Chat, Itinerary, Theme, Toast services
+│   │   └── shared/         # Layout, sidebar, bottom-tab-bar, chat-input
 │   └── e2e/                # Playwright tests
 └── docker-compose.yml
 ```
 
 ### Backend Pipeline
 
-All routes are prefixed with `/api/v1` and protected by Supabase JWT authentication (opt-out via `@Public()` decorator).
+All routes are prefixed with `/api/v1`.
 
 **Middleware stack:** Helmet &rarr; CORS &rarr; ThrottlerGuard (100 req/60s) &rarr; ZodValidationPipe &rarr; Exception filters &rarr; Response transform
 
-**Chat flow:** User query &rarr; OpenAI embedding &rarr; Qdrant similarity search &rarr; Fetch user's trip context &rarr; BAML `RAGChat()` (Claude Haiku) &rarr; SSE stream to client
+**Chat flow:** User query &rarr; Azure `text-embedding-3-large` embedding &rarr; Qdrant similarity search (top-8, score floor `0.30`) &rarr; Fetch latest trip context &rarr; BAML `StreamRAGChat()` (Azure OpenAI) &rarr; SSE stream to client
 
 ### Data Model
 
@@ -144,7 +144,7 @@ Trip
  └── TravelTip (1:N)
 ```
 
-All data is user-scoped. Cascading deletes ensure cleanup when a trip is removed.
+Cascading deletes ensure cleanup when a trip is removed.
 
 ## Development
 

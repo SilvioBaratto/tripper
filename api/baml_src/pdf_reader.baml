@@ -48,7 +48,7 @@ class ParsedItinerary {
 }
 
 function ExtractItinerary(itinerary_text: string) -> ParsedItinerary {
-  client GPT52
+  client AzureFoundry
   prompt #"
     You are a travel itinerary parser. Extract ALL structured data from this travel itinerary text.
 

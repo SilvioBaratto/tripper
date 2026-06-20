@@ -1,43 +1,54 @@
 import { Component, computed, input, output, inject, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-
-interface NavItem {
-  name: string;
-  route: string;
-  icon: 'chat' | 'map';
-}
+import { MobileChatBridgeService } from '../../services/mobile-chat-bridge.service';
+import { ThemeService } from '../../services/theme.service';
+import { NavItem, NAV_ITEMS } from '../nav-item';
+import {
+  LucideX,
+  LucidePlus,
+  LucideMessageCircle,
+  LucideMap,
+  LucideSun,
+  LucideMoon,
+} from '@lucide/angular';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [
+    RouterLink,
+    RouterLinkActive,
+    LucideX,
+    LucidePlus,
+    LucideMessageCircle,
+    LucideMap,
+    LucideSun,
+    LucideMoon,
+  ],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarComponent {
-  private readonly authService = inject(AuthService);
+  private readonly bridge = inject(MobileChatBridgeService);
   private readonly router = inject(Router);
+  readonly themeService = inject(ThemeService);
 
   isOpen = input<boolean>(false);
   isMobile = input<boolean>(false);
 
   closeSidebar = output<void>();
 
-  navItems: NavItem[] = [
-    { name: 'Chatbot', route: '/', icon: 'chat' },
-    { name: 'Itinerary', route: '/itinerary', icon: 'map' },
-  ];
+  readonly navItems: NavItem[] = NAV_ITEMS;
 
   showSidebar = computed(() => !this.isMobile() || this.isOpen());
 
-  onNavClick() {
+  onNewChat() {
+    this.bridge.resetRequested.update((v) => v + 1);
+    this.router.navigate(['/']);
     this.closeSidebar.emit();
   }
 
-  onLogout() {
-    this.authService.logout();
-    this.router.navigate(['/login'], { replaceUrl: true });
+  onNavClick() {
     this.closeSidebar.emit();
   }
 }

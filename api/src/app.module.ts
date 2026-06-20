@@ -8,10 +8,8 @@ import { LoggingMiddleware } from './common/middleware/logging.middleware';
 import { HealthModule } from './modules/health/health.module';
 import { TestModule } from './modules/test/test.module';
 import { ChatbotModule } from './modules/chatbot/chatbot.module';
-import { AuthModule } from './modules/auth/auth.module';
 import { ItineraryModule } from './modules/itinerary/itinerary.module';
 import { QdrantModule } from './modules/qdrant/qdrant.module';
-import { SupabaseAuthGuard } from './modules/auth/auth.guard';
 
 @Module({
   imports: [
@@ -38,17 +36,12 @@ import { SupabaseAuthGuard } from './modules/auth/auth.guard';
     HealthModule,
     TestModule,
     ChatbotModule,
-    AuthModule,
     ItineraryModule,
   ],
   providers: [
     {
       provide: APP_GUARD,
       useClass: ThrottlerGuard,
-    },
-    {
-      provide: APP_GUARD,
-      useClass: SupabaseAuthGuard,
     },
     {
       provide: APP_PIPE,

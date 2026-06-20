@@ -3,6 +3,13 @@ import { DatePipe } from '@angular/common';
 import { ItineraryService } from '../../services/itinerary.service';
 import { Trip, TripDay, Activity, ActivityType, TripSummary } from '../../models/itinerary.model';
 import { InlineEditComponent } from '../../shared/inline-edit/inline-edit';
+import {
+  LucideMapPin,
+  LucideInfo,
+  LucideTrash2,
+  LucidePlus,
+  LucideExternalLink,
+} from '@lucide/angular';
 
 interface ActivityStyle {
   bgColor: string;
@@ -11,7 +18,15 @@ interface ActivityStyle {
 
 @Component({
   selector: 'app-itinerary',
-  imports: [DatePipe, InlineEditComponent],
+  imports: [
+    DatePipe,
+    InlineEditComponent,
+    LucideMapPin,
+    LucideInfo,
+    LucideTrash2,
+    LucidePlus,
+    LucideExternalLink,
+  ],
   templateUrl: './itinerary.html',
   styleUrl: './itinerary.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

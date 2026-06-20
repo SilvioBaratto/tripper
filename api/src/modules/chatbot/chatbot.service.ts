@@ -36,13 +36,13 @@ export class ChatbotService {
     private readonly itineraryService: ItineraryService,
   ) {}
 
-  async chat(request: ChatRequestDto, userId?: string): Promise<RichChatResponseDto> {
+  async chat(request: ChatRequestDto): Promise<RichChatResponseDto> {
     try {
       const { b } = await import('../../../baml_client');
 
       const [searchResults, tripContext] = await Promise.all([
-        this.qdrantService.search(request.user_question, 5),
-        userId ? this.getUserTripContext(userId) : Promise.resolve(null),
+        this.qdrantService.search(request.user_question, 8),
+        this.getTripContext(),
       ]);
       const contextChunks = toRetrievedChunks(searchResults);
 
@@ -72,14 +72,13 @@ export class ChatbotService {
 
   async *streamChat(
     request: ChatRequestDto,
-    userId?: string,
   ): AsyncGenerator<StreamChunkDto> {
     try {
       const { b } = await import('../../../baml_client');
 
       const [searchResults, tripContext] = await Promise.all([
-        this.qdrantService.search(request.user_question, 5),
-        userId ? this.getUserTripContext(userId) : Promise.resolve(null),
+        this.qdrantService.search(request.user_question, 8),
+        this.getTripContext(),
       ]);
       const contextChunks = toRetrievedChunks(searchResults);
 
@@ -130,13 +129,13 @@ export class ChatbotService {
     }
   }
 
-  private async getUserTripContext(userId: string): Promise<string | null> {
+  private async getTripContext(): Promise<string | null> {
     try {
-      const trip = await this.itineraryService.getMostRecentTrip(userId);
+      const trip = await this.itineraryService.getMostRecentTrip();
       if (!trip) return null;
       return this.formatTripContext(trip);
     } catch (error) {
-      this.logger.warn(`Failed to fetch trip context for user ${userId}: ${error}`);
+      this.logger.warn(`Failed to fetch trip context: ${error}`);
       return null;
     }
   }

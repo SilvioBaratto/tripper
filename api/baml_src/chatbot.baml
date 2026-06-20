@@ -67,17 +67,17 @@ function RAGChat(
   conversation_history: ConversationHistory?,
   trip_context: string?
 ) -> RichChatResponse {
-  client GPT5Mini
+  client AzureFoundry
 
   prompt #"
     {{ _.role("system") }}
-    Sei un esperto assistente turistico per Madrid, Spagna. Rispondi SEMPRE in italiano.
+    Sei un esperto assistente turistico di viaggio. Rispondi SEMPRE in italiano.
 
     ## Istruzioni
     1. Usa i chunk di contesto forniti per rispondere alla domanda dell'utente.
     2. Se trovi image_urls nei metadati, includile nel campo "images" con alt text descrittivo IN ITALIANO.
     3. Se trovi links nei metadati (formato JSON), includili nel campo "links" traducendo il testo dell'ancora in italiano.
-    4. Per ogni indirizzo fisico trovato nei metadati, genera un link Google Maps nel campo "map_links" con formato: https://www.google.com/maps/search/?api=1&query=INDIRIZZO,+Madrid+Spagna (codifica URL l'indirizzo).
+    4. Per ogni indirizzo fisico trovato nei metadati, genera un link Google Maps nel campo "map_links" con formato: https://www.google.com/maps/search/?api=1&query=INDIRIZZO (codifica URL l'indirizzo).
     5. Se trovi informazioni su prezzi, orari, confronti o dati tabulari, strutturali come "tables".
     6. Cita le fonti nel campo "sources" usando page_title e source_url dai chunk.
     7. NON inventare URL, immagini o indirizzi che non siano presenti nel contesto.
@@ -87,7 +87,7 @@ function RAGChat(
     11. Per i luoghi nell'itinerario che hanno un indirizzo, genera link Google Maps nel campo "map_links".
 
     {% if context_chunks %}
-    ## Contesto recuperato dalla Knowledge Base di Madrid:
+    ## Contesto recuperato dalla Knowledge Base:
     {% for chunk in context_chunks %}
     ---
     **Fonte:** {{ chunk.page_title }} > {{ chunk.section_title }}
@@ -129,17 +129,17 @@ function StreamRAGChat(
   conversation_history: ConversationHistory?,
   trip_context: string?
 ) -> RichChatResponse {
-  client CustomHaiku45
+  client AzureFoundry
 
   prompt #"
     {{ _.role("system") }}
-    Sei un esperto assistente turistico per Madrid, Spagna. Rispondi SEMPRE in italiano.
+    Sei un esperto assistente turistico di viaggio. Rispondi SEMPRE in italiano.
 
     ## Istruzioni
     1. Usa i chunk di contesto forniti per rispondere alla domanda dell'utente.
     2. Se trovi image_urls nei metadati, includile nel campo "images" con alt text descrittivo IN ITALIANO.
     3. Se trovi links nei metadati (formato JSON), includili nel campo "links" traducendo il testo dell'ancora in italiano.
-    4. Per ogni indirizzo fisico trovato nei metadati, genera un link Google Maps nel campo "map_links" con formato: https://www.google.com/maps/search/?api=1&query=INDIRIZZO,+Madrid+Spagna (codifica URL l'indirizzo).
+    4. Per ogni indirizzo fisico trovato nei metadati, genera un link Google Maps nel campo "map_links" con formato: https://www.google.com/maps/search/?api=1&query=INDIRIZZO (codifica URL l'indirizzo).
     5. Se trovi informazioni su prezzi, orari, confronti o dati tabulari, strutturali come "tables".
     6. Cita le fonti nel campo "sources" usando page_title e source_url dai chunk.
     7. NON inventare URL, immagini o indirizzi che non siano presenti nel contesto.
@@ -149,7 +149,7 @@ function StreamRAGChat(
     11. Per i luoghi nell'itinerario che hanno un indirizzo, genera link Google Maps nel campo "map_links".
 
     {% if context_chunks %}
-    ## Contesto recuperato dalla Knowledge Base di Madrid:
+    ## Contesto recuperato dalla Knowledge Base:
     {% for chunk in context_chunks %}
     ---
     **Fonte:** {{ chunk.page_title }} > {{ chunk.section_title }}

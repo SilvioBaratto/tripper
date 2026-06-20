@@ -1,25 +1,57 @@
-<div class="min-h-dvh bg-surface">
-  <!-- Mobile header -->
-  <header class="md:hidden flex items-center justify-between h-14 px-4 border-b border-border bg-surface-raised sticky top-0 z-30">
-    <button (click)="toggleSidebar()" class="p-1.5 rounded-md text-text-secondary hover:text-text hover:bg-surface-inset transition-colors" aria-label="Open menu">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-      </svg>
-    </button>
-    <span class="font-display font-bold tracking-tight text-text">tripper</span>
-    <div class="w-8"></div>
-  </header>
+<div class="h-dvh overflow-hidden bg-surface flex flex-col md:block md:h-auto md:overflow-visible md:min-h-screen">
+  <!-- Skip link (target: #main-content). Native fragment focus — #main-content
+       has tabindex="-1" so the browser moves focus there on activation; no JS. -->
+  <a href="#main-content"
+     class="sr-only focus:not-sr-only focus:fixed focus:z-[100] focus:top-4 focus:left-4 focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg focus:text-sm focus:font-semibold focus:shadow-lg">
+    Skip to main content
+  </a>
 
-  <!-- Overlay -->
+  <!-- Overlay (mobile sidebar) -->
   @if (showOverlay()) {
     <div class="fixed inset-0 bg-black/20 z-40 md:hidden" (click)="closeSidebar()"></div>
   }
 
-  <!-- Sidebar -->
+  <!-- Sidebar (desktop only — hidden off-canvas on mobile) -->
   <app-sidebar [isOpen]="isSidebarOpen()" [isMobile]="isMobile()" (closeSidebar)="closeSidebar()"></app-sidebar>
 
+  <!-- Shared mobile top bar — wordmark + new chat + theme toggle -->
+  <header
+    class="md:hidden flex items-center justify-between gap-2 px-4 h-14 border-b border-border bg-surface-raised shrink-0"
+    aria-label="Top bar">
+    <span class="font-display font-bold text-text tracking-tight">tripper</span>
+    <div class="flex items-center gap-0.5 -mr-1">
+      <button type="button" (click)="newChat()"
+        class="p-2 rounded-md text-text-secondary hover:text-text hover:bg-surface-inset transition-colors motion-reduce:transition-none min-h-11 min-w-11 flex items-center justify-center shrink-0"
+        aria-label="New chat">
+        <svg lucidePlus class="w-5 h-5" aria-hidden="true"></svg>
+      </button>
+      <button type="button" (click)="themeService.toggleTheme()"
+        class="p-2 rounded-md text-text-secondary hover:text-text hover:bg-surface-inset transition-colors motion-reduce:transition-none min-h-11 min-w-11 flex items-center justify-center shrink-0"
+        [attr.aria-label]="themeService.isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
+        [attr.aria-pressed]="themeService.isDark()">
+        @if (themeService.isDark()) {
+        <svg lucideSun class="w-5 h-5" aria-hidden="true"></svg>
+        } @else {
+        <svg lucideMoon class="w-5 h-5" aria-hidden="true"></svg>
+        }
+      </button>
+    </div>
+  </header>
+
   <!-- Main content -->
-  <main class="md:pl-64 h-[calc(100dvh-3.5rem)] md:h-dvh flex flex-col">
+  <main id="main-content" tabindex="-1" [attr.aria-label]="currentPageTitle()"
+    class="md:pl-64 flex-1 md:h-dvh flex flex-col min-h-0 overscroll-contain focus:outline-none focus-visible:outline-none">
     <router-outlet></router-outlet>
   </main>
+
+  <!-- Screen reader route announcer -->
+  <div class="sr-only" aria-live="polite" aria-atomic="true">
+    {{ routeAnnouncement() }}
+  </div>
+
+  <!-- Toast notifications -->
+  <app-toast />
+
+  <!-- Bottom tab bar (mobile only) -->
+  <app-bottom-tab-bar class="sticky bottom-0 z-30" />
 </div>

@@ -60,12 +60,10 @@ enum TipCategory {
 /// Top-level trip itinerary
 model Trip {
   id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  userId    String   @default(dbgenerated("auth.uid()")) @map("user_id") @db.Uuid
   title     String   @db.VarChar(500)
   city      String   @db.VarChar(255)
   startDate DateTime @map("start_date") @db.Date
   endDate   DateTime @map("end_date") @db.Date
-  isShared  Boolean  @default(false) @map("is_shared")
 
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
   updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz

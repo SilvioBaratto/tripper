@@ -6,68 +6,119 @@ import {
   ElementRef,
   DestroyRef,
   ChangeDetectionStrategy,
+  OnInit,
+  OnDestroy,
+  effect,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ChatService } from '../../services/chat.service';
+import { MobileChatBridgeService } from '../../services/mobile-chat-bridge.service';
 import { ChatMessage, RichContent } from '../../models/chat.model';
 import { MarkdownPipe } from '../../shared/pipes/markdown.pipe';
+import { ChatInputComponent } from '../../shared/chat-input/chat-input';
+import { uuid } from '../../shared/uuid';
+import {
+  LucideMapPin,
+  LucideExternalLink,
+  LucideFileText,
+  LucideCircleAlert,
+} from '@lucide/angular';
 
 @Component({
   selector: 'app-chatbot',
-  imports: [MarkdownPipe],
+  imports: [
+    MarkdownPipe,
+    ChatInputComponent,
+    LucideMapPin,
+    LucideExternalLink,
+    LucideFileText,
+    LucideCircleAlert,
+  ],
   templateUrl: './chatbot.html',
   styleUrl: './chatbot.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { style: 'flex:1; display:flex; flex-direction:column; min-height:0' },
 })
-export class ChatbotComponent {
+export class ChatbotComponent implements OnInit, OnDestroy {
   private readonly chatService = inject(ChatService);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly bridge = inject(MobileChatBridgeService);
   private readonly scrollContainer = viewChild<ElementRef<HTMLElement>>('scrollContainer');
-  private readonly inputEl = viewChild<ElementRef<HTMLTextAreaElement>>('inputEl');
+  private readonly desktopChatInput = viewChild<ChatInputComponent>('desktopChatInput');
 
   messages = signal<ChatMessage[]>([]);
   isLoading = signal(false);
   userInput = signal('');
+  lastCompletedSummary = signal('');
+
+  /** Reset chat when the sidebar / mobile header requests a new chat. */
+  private readonly chatResetEffect = effect(() => {
+    this.bridge.resetRequested();
+    this.messages.set([]);
+    this.isLoading.set(false);
+    this.bridge.isLoading.set(false);
+    this.lastCompletedSummary.set('');
+  });
+
+  ngOnInit() {
+    this.bridge.register({
+      send: (text) => this.sendMessage(text),
+      inputChange: (text) => this.userInput.set(text),
+    });
+    this.bridge.showInput.set(true);
+  }
+
+  ngOnDestroy() {
+    this.bridge.unregister();
+    this.bridge.showInput.set(false);
+  }
 
   quickPrompt(text: string) {
     this.userInput.set(text);
-    this.onSend();
+    this.syncMobileInput(text);
+    this.sendMessage(text);
+    setTimeout(() => {
+      const desktopInput = this.desktopChatInput();
+      if (desktopInput) {
+        desktopInput.focus();
+      } else {
+        this.scrollContainer()?.nativeElement.focus();
+      }
+    }, 0);
   }
 
-  onInputChange(event: Event) {
-    const textarea = event.target as HTMLTextAreaElement;
-    this.userInput.set(textarea.value);
-
-    textarea.style.height = 'auto';
-    textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
+  /** Called from desktop ChatInputComponent */
+  onChatInputSend(text: string) {
+    this.sendMessage(text);
   }
 
-  onKeydown(event: KeyboardEvent) {
-    if (!event.shiftKey && !event.isComposing) {
-      event.preventDefault();
-      this.onSend();
-    }
+  /** Called from desktop ChatInputComponent */
+  onInputChange(text: string) {
+    this.userInput.set(text);
+    this.syncMobileInput(text);
   }
 
-  onSend() {
-    const question = this.userInput().trim();
+  private sendMessage(question: string) {
+    question = question.trim();
     if (!question || this.isLoading()) return;
 
     this.messages.update((msgs) => [
       ...msgs,
-      { id: crypto.randomUUID(), role: 'user', content: question },
+      { id: uuid(), role: 'user', content: question },
     ]);
     this.userInput.set('');
+    this.syncMobileInput('');
+    this.lastCompletedSummary.set('');
     this.isLoading.set(true);
+    this.bridge.isLoading.set(true);
     this.scrollToBottom();
 
-    const textarea = this.inputEl()?.nativeElement;
-    if (textarea) textarea.style.height = 'auto';
+    const history = this.messages()
+      .filter((m) => !m.isStreaming && m.content.trim().length > 0)
+      .slice(-20)
+      .map((m) => `${m.role}: ${m.content}`);
 
-    const history = this.messages().map((m) => `${m.role}: ${m.content}`);
-
-    const assistantId = crypto.randomUUID();
+    const assistantId = uuid();
     const emptyRich: RichContent = {
       images: [],
       links: [],
@@ -127,10 +178,21 @@ export class ChatbotComponent {
             ),
           );
           this.isLoading.set(false);
+          this.bridge.isLoading.set(false);
           this.scrollToBottom();
         },
         complete: () => {
+          const completed = this.messages().find((m) => m.id === assistantId);
+          if (completed?.content) {
+            const text = completed.content.replace(/<[^>]*>/g, '');
+            this.lastCompletedSummary.set(
+              text.length > 200
+                ? `Assistant replied: ${text.substring(0, 200)}…`
+                : `Assistant replied: ${text}`,
+            );
+          }
           this.isLoading.set(false);
+          this.bridge.isLoading.set(false);
           this.scrollToBottom();
         },
       });
@@ -140,7 +202,12 @@ export class ChatbotComponent {
     (event.target as HTMLImageElement).style.display = 'none';
   }
 
+  private syncMobileInput(text: string) {
+    this.bridge.userInput.set(text);
+  }
+
   private scrollToBottom() {
+    this.bridge.suppressNavAutoHide();
     setTimeout(() => {
       const el = this.scrollContainer()?.nativeElement;
       if (el) el.scrollTop = el.scrollHeight;

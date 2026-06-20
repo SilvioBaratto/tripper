@@ -22,7 +22,7 @@
     "prisma:migrate:reset": "npx prisma migrate reset",
     "prisma:studio": "npx prisma studio",
     "postinstall": "npx prisma generate || true",
-    "seed:madrid": "ts-node -r tsconfig-paths/register scripts/seed-madrid.ts"
+    "seed:tripper": "ts-node -r tsconfig-paths/register scripts/seed-tripper.ts"
   },
   "dependencies": {
     "@boundaryml/baml": "^0.219.0",
@@ -35,7 +35,6 @@
     "@prisma/adapter-pg": "^7.4.0",
     "@prisma/client": "^7.4.0",
     "@qdrant/js-client-rest": "^1.16.2",
-    "@supabase/supabase-js": "^2.49.0",
     "helmet": "^8.0.0",
     "nestjs-zod": "^5.1.1",
     "pdf-parse": "^1.1.1",

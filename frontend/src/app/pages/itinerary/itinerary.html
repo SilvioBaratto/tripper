@@ -18,9 +18,7 @@
 @if (!isLoading() && !error() && !trip()) {
   <div class="flex-1 flex items-center justify-center px-4">
     <div class="text-center">
-      <svg class="mx-auto w-10 h-10 text-text-tertiary mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498 4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 0 0-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0Z" />
-      </svg>
+      <svg lucideMapPin class="mx-auto w-10 h-10 text-text-tertiary mb-3" aria-hidden="true"></svg>
       <p class="text-sm text-text-secondary">No itineraries yet</p>
     </div>
   </div>
@@ -45,10 +43,7 @@
         </h1>
         <div class="flex items-center gap-3 mt-1.5 text-xs text-text-secondary">
           <span class="inline-flex items-center gap-1">
-            <svg class="w-3.5 h-3.5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 0 1 15 0Z" />
-            </svg>
+            <svg lucideMapPin class="w-3.5 h-3.5 text-primary" aria-hidden="true"></svg>
             {{ t.city }}
           </span>
           <span>{{ t.startDate | date:'d MMM' }} – {{ t.endDate | date:'d MMM yyyy' }}</span>
@@ -79,7 +74,7 @@
             <!-- Delete day button -->
             <button
               (click)="removeDay(day.id); $event.stopPropagation()"
-              class="absolute -top-1.5 -right-1.5 hidden group-hover:flex items-center justify-center w-4 h-4 rounded-full bg-danger text-white text-[8px] hover:bg-red-700 transition-colors"
+              class="absolute -top-1.5 -right-1.5 hidden group-hover:flex items-center justify-center w-4 h-4 rounded-full bg-danger text-white text-[8px] hover:opacity-80 transition-opacity"
               aria-label="Delete day">
               &times;
             </button>
@@ -97,9 +92,7 @@
           [class.text-text-secondary]="activeDay() !== 0"
           [class.hover:bg-primary-light]="activeDay() !== 0"
           [class.hover:text-primary]="activeDay() !== 0">
-          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
-          </svg>
+          <svg lucideInfo class="w-3 h-3" aria-hidden="true"></svg>
           Info
         </button>
       </div>
@@ -148,9 +141,7 @@
                     (click)="removeActivity(activity.id)"
                     class="hidden group-hover/minor:flex items-center justify-center w-5 h-5 rounded text-text-tertiary hover:text-danger transition-colors shrink-0"
                     aria-label="Delete activity">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                    </svg>
+                    <svg lucideTrash2 class="w-3.5 h-3.5" aria-hidden="true"></svg>
                   </button>
                 </div>
               } @else {
@@ -221,9 +212,7 @@
                           (click)="removeActivity(activity.id)"
                           class="hidden group-hover/card:flex items-center justify-center w-5 h-5 rounded text-text-tertiary hover:text-danger transition-colors"
                           aria-label="Delete activity">
-                          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                          </svg>
+                          <svg lucideTrash2 class="w-3.5 h-3.5" aria-hidden="true"></svg>
                         </button>
                       </div>
                     </div>
@@ -323,9 +312,7 @@
               <button
                 (click)="showAddActivity.set(day.id); newActivityTitle.set('')"
                 class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full border border-dashed border-border text-text-secondary hover:border-primary hover:text-primary hover:bg-primary-light transition-colors">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                </svg>
+                <svg lucidePlus class="w-3.5 h-3.5" aria-hidden="true"></svg>
                 Add activity
               </button>
             }
@@ -363,9 +350,7 @@
                            target="_blank" rel="noopener"
                            class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-md bg-primary text-white hover:bg-primary-hover transition-colors">
                           Book
-                          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                          </svg>
+                          <svg lucideExternalLink class="w-3 h-3" aria-hidden="true"></svg>
                         </a>
                       }
                     </div>

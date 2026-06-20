@@ -92,7 +92,6 @@ export const TravelTipResponseSchema = z.object({
 
 export const TripResponseSchema = z.object({
   id: z.string().uuid(),
-  userId: z.string().uuid(),
   title: z.string(),
   city: z.string(),
   startDate: z.date(),

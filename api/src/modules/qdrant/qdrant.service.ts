@@ -6,10 +6,7 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { QdrantClient } from '@qdrant/js-client-rest';
 
-const COLLECTION_NAME = 'madrid-kb';
-const EMBEDDING_MODEL = 'text-embedding-ada-002';
-
-export interface MadridKBPayload {
+export interface KBPayload {
   chunk_id: string;
   text: string;
   page_title: string;
@@ -29,28 +26,75 @@ export interface MadridKBPayload {
 
 export interface SearchResult {
   score: number;
-  payload: MadridKBPayload;
+  payload: KBPayload;
 }
 
 @Injectable()
 export class QdrantService implements OnModuleInit {
   private readonly logger = new Logger(QdrantService.name);
   private readonly client: QdrantClient;
-  private readonly openaiApiKey: string;
+  private readonly collectionName: string;
+  /**
+   * Low "garbage" floor passed to Qdrant as `score_threshold` — NOT a relevance
+   * gate. Relevance is decided by top-K rank (the `limit`), because
+   * text-embedding-3-* cosine scores are not separable by an absolute cutoff
+   * (relevant matches land ~0.5-0.6). Env name kept as QDRANT_SCORE_THRESHOLD.
+   */
+  private readonly scoreFloor: number;
+  private readonly defaultSearchLimit: number;
+  private readonly vectorSize: number;
+  private readonly azureEmbedUrl: string;
+  private readonly azureEmbedKey: string;
 
   constructor(private readonly config: ConfigService) {
     this.client = new QdrantClient({
       url: config.getOrThrow<string>('QDRANT_URL'),
       apiKey: config.getOrThrow<string>('QDRANT_API_KEY'),
     });
-    this.openaiApiKey = config.getOrThrow<string>('OPENAI_API_KEY');
+
+    this.collectionName = config.getOrThrow<string>('QDRANT_COLLECTION_NAME');
+    this.scoreFloor = parseFloat(
+      config.getOrThrow<string>('QDRANT_SCORE_THRESHOLD'),
+    );
+    this.defaultSearchLimit = parseInt(
+      config.getOrThrow<string>('QDRANT_SEARCH_LIMIT'),
+      10,
+    );
+    this.vectorSize = parseInt(
+      config.getOrThrow<string>('AZURE_OPENAI_EMBEDDINGS_DIM'),
+      10,
+    );
+
+    if (Number.isNaN(this.scoreFloor)) {
+      throw new Error('QDRANT_SCORE_THRESHOLD must be a number');
+    }
+    if (Number.isNaN(this.defaultSearchLimit)) {
+      throw new Error('QDRANT_SEARCH_LIMIT must be an integer');
+    }
+    if (Number.isNaN(this.vectorSize)) {
+      throw new Error('AZURE_OPENAI_EMBEDDINGS_DIM must be an integer');
+    }
+
+    const endpoint = config
+      .getOrThrow<string>('AZURE_OPENAI_EMBEDDINGS_ENDPOINT')
+      .replace(/\/+$/, '');
+    const deployment = config.getOrThrow<string>(
+      'AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT',
+    );
+    const apiVersion = config.getOrThrow<string>(
+      'AZURE_OPENAI_EMBEDDINGS_API_VERSION',
+    );
+    this.azureEmbedUrl = `${endpoint}/openai/deployments/${deployment}/embeddings?api-version=${apiVersion}`;
+    this.azureEmbedKey = config.getOrThrow<string>(
+      'AZURE_OPENAI_EMBEDDINGS_API_KEY',
+    );
   }
 
   async onModuleInit() {
     try {
-      const info = await this.client.getCollection(COLLECTION_NAME);
+      const info = await this.client.getCollection(this.collectionName);
       this.logger.log(
-        `Qdrant connected — collection "${COLLECTION_NAME}" has ${info.points_count} points`,
+        `Qdrant connected — collection "${this.collectionName}" has ${info.points_count} points`,
       );
     } catch (error) {
       this.logger.warn(`Qdrant collection check failed: ${error}`);
@@ -59,7 +103,7 @@ export class QdrantService implements OnModuleInit {
 
   async isHealthy(): Promise<boolean> {
     try {
-      await this.client.getCollection(COLLECTION_NAME);
+      await this.client.getCollection(this.collectionName);
       return true;
     } catch {
       return false;
@@ -67,44 +111,52 @@ export class QdrantService implements OnModuleInit {
   }
 
   async embed(text: string): Promise<number[]> {
-    const res = await fetch('https://api.openai.com/v1/embeddings', {
+    const res = await fetch(this.azureEmbedUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${this.openaiApiKey}`,
+        'api-key': this.azureEmbedKey,
       },
-      body: JSON.stringify({
-        model: EMBEDDING_MODEL,
-        input: text,
-      }),
+      body: JSON.stringify({ input: text }),
     });
 
     if (!res.ok) {
       const body = await res.text().catch(() => '');
       throw new Error(
-        `OpenAI embeddings failed (HTTP ${res.status}): ${body.slice(0, 500)}`,
+        `Azure OpenAI embeddings failed (HTTP ${res.status}): ${body.slice(0, 500)}`,
       );
     }
 
     const json = (await res.json()) as {
       data: { embedding: number[]; index: number }[];
     };
-    return json.data[0].embedding;
+    const embedding = json.data[0].embedding;
+
+    if (embedding.length !== this.vectorSize) {
+      throw new Error(
+        `Embedding dimension mismatch: got ${embedding.length}, expected ${this.vectorSize} (AZURE_OPENAI_EMBEDDINGS_DIM)`,
+      );
+    }
+
+    return embedding;
   }
 
-  async search(query: string, limit = 5): Promise<SearchResult[]> {
+  async search(
+    query: string,
+    limit: number = this.defaultSearchLimit,
+  ): Promise<SearchResult[]> {
     const vector = await this.embed(query);
 
-    const results = await this.client.search(COLLECTION_NAME, {
+    const results = await this.client.search(this.collectionName, {
       vector,
       limit,
-      score_threshold: 0.75,
+      score_threshold: this.scoreFloor,
       with_payload: true,
     });
 
     return results.map((r) => ({
       score: r.score,
-      payload: r.payload as unknown as MadridKBPayload,
+      payload: r.payload as unknown as KBPayload,
     }));
   }
 }

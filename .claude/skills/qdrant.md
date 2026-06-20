@@ -67,7 +67,7 @@ await client.upsert('my_collection', {
     {
       id: '550e8400-e29b-41d4-a716-446655440000',
       vector: [0.24, 0.18, 0.22, 0.44],
-      payload: { city: 'Madrid', country: 'Spain' },
+      payload: { city: 'Paris', country: 'France' },
     },
   ],
 });

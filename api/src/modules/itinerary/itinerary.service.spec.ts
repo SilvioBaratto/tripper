@@ -55,10 +55,9 @@ describe('ItineraryService', () => {
   describe('uploadPdfAndExtract', () => {
     it('should throw BadRequestException when PDF extraction fails', async () => {
       const invalidPdfBuffer = Buffer.from('invalid pdf content');
-      const userId = 'user-123';
 
       await expect(
-        service.uploadPdfAndExtract(invalidPdfBuffer, userId),
+        service.uploadPdfAndExtract(invalidPdfBuffer),
       ).rejects.toThrow(BadRequestException);
     });
 

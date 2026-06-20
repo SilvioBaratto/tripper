@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Full-stack Madrid travel planning app: **NestJS 11** backend, **Angular 21** frontend, **Supabase** (PostgreSQL + Auth), **Qdrant** vector DB, and **BAML** for LLM integration. No local database — uses hosted Supabase.
+Full-stack travel planning app: **NestJS 11** backend, **Angular 21** frontend, **Supabase** (PostgreSQL + Auth), **Qdrant** vector DB, and **BAML** for LLM integration. No local database — uses hosted Supabase.
 
 ## Build & Run Commands
 
@@ -54,7 +54,7 @@ NestJS modular architecture with global middleware stack configured in `main.ts`
 **Authentication**: Supabase JWT. `SupabaseAuthGuard` is global — all routes require auth unless marked with `@Public()`. The guard validates tokens via Supabase API and injects `userId` into the request.
 
 **Key modules**:
-- **chatbot**: RAG pipeline — embeds query (OpenAI) → searches Qdrant (`madrid-kb`) → fetches user's latest trip for context → calls BAML `RAGChat()` (Claude Haiku 4.5) → streams SSE response
+- **chatbot**: RAG pipeline — embeds query (Azure OpenAI) → searches Qdrant (`tripper-kb`) → fetches user's latest trip for context → calls BAML `StreamRAGChat()` (AzureFoundry) → streams SSE response
 - **itinerary**: Full CRUD for trips/days/activities. `uploadPdfAndExtract()` parses PDFs via BAML. Nested routes: `/itineraries/:id/days/:dayId/activities`
 - **qdrant**: Wraps `@qdrant/js-client-rest` for vector similarity search
 

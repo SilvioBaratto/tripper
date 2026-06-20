@@ -72,6 +72,18 @@ client<llm> Ollama {
   }
 }
 
+// Azure OpenAI (gpt-4.1 deployment) — primary client for all RAG/extraction
+// functions, matching the ITAL-IA setup. base_url already points at the
+// deployment, so no model option is needed here.
+client<llm> AzureFoundry {
+  provider azure-openai
+  options {
+    base_url env.AZURE_OPENAI_BASE_URL
+    api_version env.AZURE_OPENAI_API_VERSION
+    api_key env.AZURE_OPENAI_API_KEY
+  }
+}
+
 // https://docs.boundaryml.com/docs/snippets/clients/fallback
 client<llm> OpenaiFallback {
   provider fallback

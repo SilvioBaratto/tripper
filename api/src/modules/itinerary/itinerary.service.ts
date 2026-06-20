@@ -58,14 +58,8 @@ export class ItineraryService {
 
   constructor(private readonly prisma: PrismaService) {}
 
-  async getTripsForUser(userId: string) {
+  async getTrips() {
     return this.prisma.trip.findMany({
-      where: {
-        OR: [
-          { userId },
-          { isShared: true },
-        ],
-      },
       orderBy: { createdAt: 'desc' },
       include: {
         _count: { select: { days: true } },
@@ -73,7 +67,7 @@ export class ItineraryService {
     });
   }
 
-  async getTripById(tripId: string, userId: string) {
+  async getTripById(tripId: string) {
     const trip = await this.prisma.trip.findUnique({
       where: { id: tripId },
       include: {
@@ -104,24 +98,17 @@ export class ItineraryService {
       throw new NotFoundException(`Trip ${tripId} not found`);
     }
 
-    const isOwner = trip.userId === userId;
-    const isShared = trip.isShared;
-
-    if (!isOwner && !isShared) {
-      throw new NotFoundException(`Trip ${tripId} not found`);
-    }
-
     return trip;
   }
 
-  async uploadPdfAndExtract(pdfBuffer: Buffer, userId: string) {
-    this.logger.log(`Extracting itinerary from PDF (${pdfBuffer.length} bytes) for user ${userId}`);
+  async uploadPdfAndExtract(pdfBuffer: Buffer) {
+    this.logger.log(`Extracting itinerary from PDF (${pdfBuffer.length} bytes)`);
 
     // Step 1: Extract structured data using BAML
     const parsedItinerary = await this.extractItineraryFromPdf(pdfBuffer);
 
     // Step 2: Save to database in transaction
-    const trip = await this.saveItineraryToDatabase(parsedItinerary, userId);
+    const trip = await this.saveItineraryToDatabase(parsedItinerary);
 
     if (!trip) {
       throw new BadRequestException('Failed to create trip');
@@ -133,27 +120,27 @@ export class ItineraryService {
 
   // ── CRUD helpers ──────────────────────────────────────────────────
 
-  private async assertTripAccess(tripId: string, userId: string) {
+  private async assertTripExists(tripId: string) {
     const trip = await this.prisma.trip.findUnique({
       where: { id: tripId },
-      select: { userId: true, isShared: true },
+      select: { id: true },
     });
-    if (!trip || (trip.userId !== userId && !trip.isShared)) {
+    if (!trip) {
       throw new NotFoundException(`Trip ${tripId} not found`);
     }
     return trip;
   }
 
-  async updateTrip(tripId: string, data: UpdateTripDto, userId: string) {
-    await this.assertTripAccess(tripId, userId);
+  async updateTrip(tripId: string, data: UpdateTripDto) {
+    await this.assertTripExists(tripId);
     return this.prisma.trip.update({
       where: { id: tripId },
       data,
     });
   }
 
-  async updateTripDay(tripId: string, dayId: string, data: UpdateTripDayDto, userId: string) {
-    await this.assertTripAccess(tripId, userId);
+  async updateTripDay(tripId: string, dayId: string, data: UpdateTripDayDto) {
+    await this.assertTripExists(tripId);
     const day = await this.prisma.tripDay.findUnique({
       where: { id: dayId },
       select: { tripId: true },
@@ -167,8 +154,8 @@ export class ItineraryService {
     });
   }
 
-  async updateActivity(tripId: string, activityId: string, data: UpdateActivityDto, userId: string) {
-    await this.assertTripAccess(tripId, userId);
+  async updateActivity(tripId: string, activityId: string, data: UpdateActivityDto) {
+    await this.assertTripExists(tripId);
     const activity = await this.prisma.activity.findUnique({
       where: { id: activityId },
       include: { tripDay: { select: { tripId: true } } },
@@ -193,8 +180,8 @@ export class ItineraryService {
     });
   }
 
-  async createActivity(tripId: string, dayId: string, data: CreateActivityDto, userId: string) {
-    await this.assertTripAccess(tripId, userId);
+  async createActivity(tripId: string, dayId: string, data: CreateActivityDto) {
+    await this.assertTripExists(tripId);
     const day = await this.prisma.tripDay.findUnique({
       where: { id: dayId },
       select: { tripId: true },
@@ -229,8 +216,8 @@ export class ItineraryService {
     });
   }
 
-  async deleteActivity(tripId: string, activityId: string, userId: string) {
-    await this.assertTripAccess(tripId, userId);
+  async deleteActivity(tripId: string, activityId: string) {
+    await this.assertTripExists(tripId);
     const activity = await this.prisma.activity.findUnique({
       where: { id: activityId },
       include: { tripDay: { select: { tripId: true } } },
@@ -241,8 +228,8 @@ export class ItineraryService {
     await this.prisma.activity.delete({ where: { id: activityId } });
   }
 
-  async reorderActivities(tripId: string, dayId: string, activityIds: string[], userId: string) {
-    await this.assertTripAccess(tripId, userId);
+  async reorderActivities(tripId: string, dayId: string, activityIds: string[]) {
+    await this.assertTripExists(tripId);
     const day = await this.prisma.tripDay.findUnique({
       where: { id: dayId },
       select: { tripId: true },
@@ -270,8 +257,8 @@ export class ItineraryService {
     });
   }
 
-  async deleteDay(tripId: string, dayId: string, userId: string) {
-    await this.assertTripAccess(tripId, userId);
+  async deleteDay(tripId: string, dayId: string) {
+    await this.assertTripExists(tripId);
     const day = await this.prisma.tripDay.findUnique({
       where: { id: dayId },
       select: { tripId: true },
@@ -282,14 +269,8 @@ export class ItineraryService {
     await this.prisma.tripDay.delete({ where: { id: dayId } });
   }
 
-  async getMostRecentTrip(userId: string) {
+  async getMostRecentTrip() {
     return this.prisma.trip.findFirst({
-      where: {
-        OR: [
-          { userId },
-          { isShared: true },
-        ],
-      },
       orderBy: { createdAt: 'desc' },
       include: {
         days: {
@@ -331,7 +312,7 @@ export class ItineraryService {
     }
   }
 
-  private async saveItineraryToDatabase(parsedItinerary: ParsedItinerary, userId: string) {
+  private async saveItineraryToDatabase(parsedItinerary: ParsedItinerary) {
     return this.prisma.$transaction(async (tx) => {
       // Step 1: Create/find all unique places
       const placeMap = await this.upsertPlaces(tx, parsedItinerary);
@@ -339,7 +320,6 @@ export class ItineraryService {
       // Step 2: Create the trip
       const trip = await tx.trip.create({
         data: {
-          userId,
           title: parsedItinerary.title,
           city: parsedItinerary.city,
           startDate: new Date(parsedItinerary.start_date),

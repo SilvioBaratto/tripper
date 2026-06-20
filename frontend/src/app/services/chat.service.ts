@@ -2,7 +2,6 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { AuthService } from './auth.service';
 import { ChatRequest, RichChatResponse, StreamChunk } from '../models/chat.model';
 
 @Injectable({
@@ -10,7 +9,6 @@ import { ChatRequest, RichChatResponse, StreamChunk } from '../models/chat.model
 })
 export class ChatService {
   private readonly http = inject(HttpClient);
-  private readonly authService = inject(AuthService);
   private readonly chatEndpoint = `${environment.apiUrl}chat/`;
 
   sendMessage(question: string, history: string[]): Observable<RichChatResponse> {
@@ -29,13 +27,9 @@ export class ChatService {
         conversation_history: { messages: history },
       };
 
-      const token = this.authService.getAccessToken();
       const headers: Record<string, string> = {
         'Content-Type': 'application/json',
       };
-      if (token) {
-        headers['Authorization'] = `Bearer ${token}`;
-      }
 
       fetch(`${this.chatEndpoint}stream`, {
         method: 'POST',

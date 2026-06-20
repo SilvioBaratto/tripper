@@ -15,9 +15,10 @@ COPY . .
 RUN npx prisma generate
 RUN npx baml-cli generate
 
-# Copy entrypoint script
+# Copy entrypoint script. Strip any CR (defends against a CRLF checkout on
+# Windows) and make it executable so the shebang resolves inside the container.
 COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+RUN sed -i 's/\r$//' /entrypoint.sh && chmod +x /entrypoint.sh
 
 EXPOSE 8000
 
@@ -53,9 +54,10 @@ COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/baml_client ./baml_client
 COPY --from=builder /app/baml_src ./baml_src
 
-# Copy entrypoint script
+# Copy entrypoint script. Strip any CR (defends against a CRLF checkout on
+# Windows) and make it executable so the shebang resolves inside the container.
 COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+RUN sed -i 's/\r$//' /entrypoint.sh && chmod +x /entrypoint.sh
 
 # Change ownership
 RUN chown -R appuser:appgroup /app /entrypoint.sh
@@ -66,7 +68,7 @@ USER appuser
 EXPOSE 8000
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-    CMD wget --no-verbose --tries=1 --spider http://localhost:8000/health || exit 1
+    CMD wget --no-verbose --tries=1 --spider http://localhost:8000/api/v1/health || exit 1
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["node", "dist/src/main"]
