@@ -87,7 +87,7 @@ export class ItineraryComponent implements OnInit {
     this.itineraryService.getTrip(id).subscribe({
       next: (trip) => {
         this.trip.set(trip);
-        this.activeDay.set(trip.days[0]?.dayNumber ?? 1);
+        this.activeDay.set(this.pickActiveDay(trip.days));
         this.isLoading.set(false);
       },
       error: (err) => {
@@ -100,6 +100,30 @@ export class ItineraryComponent implements OnInit {
 
   selectDay(dayNumber: number) {
     this.activeDay.set(dayNumber);
+  }
+
+  /** Local date as YYYY-MM-DD (avoids UTC offset shifting the day). */
+  private todayStr(): string {
+    const n = new Date();
+    const m = String(n.getMonth() + 1).padStart(2, '0');
+    const d = String(n.getDate()).padStart(2, '0');
+    return `${n.getFullYear()}-${m}-${d}`;
+  }
+
+  /**
+   * Pick the day to show on load: the latest day whose date is on or before
+   * today. Trip in the future → first day; trip in the past → last day.
+   */
+  private pickActiveDay(days: TripDay[]): number {
+    if (!days.length) return 1;
+    const today = this.todayStr();
+    const sorted = [...days].sort((a, b) => a.dayNumber - b.dayNumber);
+    let chosen = sorted[0];
+    for (const d of sorted) {
+      if (d.date.slice(0, 10) <= today) chosen = d;
+      else break;
+    }
+    return chosen.dayNumber;
   }
 
   getActiveDay(): TripDay | undefined {
